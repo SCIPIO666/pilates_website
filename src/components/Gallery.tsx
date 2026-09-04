@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import RevealSection from '@/components/RevealSection';
 
 const galleryImages = [
   { key: 'gallery-01', src: '/images/gallery/gallery-01.jpg', size: 'large' },
@@ -51,7 +52,7 @@ const Gallery: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-4 grid-rows-2 gap-3 h-[560px]">
+        <RevealSection className="grid grid-cols-4 grid-rows-2 gap-3 h-[560px]" y={30} duration={1}>
           {galleryImages.map((img) => (
             <div
               key={img.key}
@@ -63,7 +64,7 @@ const Gallery: React.FC = () => {
               }}
             />
           ))}
-        </div>
+        </RevealSection>
       )}
     </section>
   );
