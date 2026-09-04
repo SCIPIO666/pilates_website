@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import RevealSection from '@/components/RevealSection';
 
 const testimonials = [
   {
@@ -43,7 +44,7 @@ const Testimonials: React.FC = () => {
         <h2>What our clients say.</h2>
       </div>
 
-      <div className="max-w-2xl">
+      <RevealSection className="max-w-2xl" y={30} duration={1}>
         <div
           className="img-placeholder w-14 h-14 rounded-full mb-6"
           style={{
@@ -71,7 +72,7 @@ const Testimonials: React.FC = () => {
             />
           ))}
         </div>
-      </div>
+      </RevealSection>
     </section>
   );
 };
