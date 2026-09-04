@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Classes', href: '#classes' },
   { label: 'Instructor', href: '#instructor' },
   { label: 'Studio', href: '#gallery' },
+  { label: 'Pricing', href: '#pricing' },
   { label: 'Reviews', href: '#testimonials' },
 ];
 

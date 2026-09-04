@@ -1,4 +1,5 @@
 import React from 'react';
+import philosophyImg from '../../public/aboutusHero.webp';
 
 const Philosophy: React.FC = () => {
   return (
@@ -6,7 +7,7 @@ const Philosophy: React.FC = () => {
       <div
         className="img-placeholder w-full h-[340px] md:h-[480px]"
         style={{
-          backgroundImage: "url('/images/philosophy/philosophy-hero.jpg')",
+          backgroundImage: `url('${philosophyImg.src}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

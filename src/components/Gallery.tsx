@@ -1,71 +1,52 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import RevealSection from '@/components/RevealSection';
-
-const galleryImages = [
-  { key: 'gallery-01', src: '/images/gallery/gallery-01.jpg', size: 'large' },
-  { key: 'gallery-02', src: '/images/gallery/gallery-02.jpg', size: 'medium' },
-  { key: 'gallery-03', src: '/images/gallery/gallery-03.jpg', size: 'small' },
-  { key: 'gallery-04', src: '/images/gallery/gallery-04.jpg', size: 'medium' },
-  { key: 'gallery-05', src: '/images/gallery/gallery-05.jpg', size: 'medium' },
-];
-
-const sizeClasses: Record<string, string> = {
-  large: 'md:col-span-2 md:row-span-2 h-[280px] md:h-full',
-  medium: 'h-[280px] md:h-full',
-  small: 'h-[280px] md:h-full',
-};
+import { galleryData } from '@/data/siteData';
 
 const Gallery: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
   return (
-    <section id="gallery" className="bg-bone">
-      <div className="mb-10 md:mb-14 max-w-xl">
-        <p className="label-xs mb-4">The Studio</p>
-        <h2>A space designed to slow you down.</h2>
-      </div>
+    <section id="gallery" className="bg-bone py-24 px-6 md:px-16 overflow-hidden">
+      {/* Header */}
+      <RevealSection className="max-w-xl mb-16">
+        <p className="label-xs text-olive mb-2">STUDIO ARCHITECTURE</p>
+        <h2 className="text-3xl md:text-5xl font-display font-semibold text-ink">
+          Designed for quiet focus &amp; reflection.
+        </h2>
+      </RevealSection>
 
-      {isMobile ? (
-        <div
-          className="flex gap-3 overflow-x-auto pb-4 -mx-6 px-6 snap-x snap-mandatory"
-          style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
-        >
-          {galleryImages.map((img) => (
-            <div
-              key={img.key}
-              className="img-placeholder flex-shrink-0 w-[70vw] h-[300px] snap-start"
-              style={{
-                backgroundImage: `url('${img.src}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            />
-          ))}
-        </div>
-      ) : (
-        <RevealSection className="grid grid-cols-4 grid-rows-2 gap-3 h-[560px]" y={30} duration={1}>
-          {galleryImages.map((img) => (
-            <div
-              key={img.key}
-              className={`img-placeholder ${sizeClasses[img.size]}`}
-              style={{
-                backgroundImage: `url('${img.src}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            />
-          ))}
-        </RevealSection>
-      )}
+      {/* Atelier Gymnase Asymmetric Grid Layout */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        {galleryData.map((item, idx) => {
+          const colSpan = idx % 3 === 0 ? 'lg:col-span-7' : idx % 3 === 1 ? 'lg:col-span-5' : 'lg:col-span-12';
+
+          return (
+            <RevealSection
+              key={item.id}
+              className={`${colSpan} ${item.offsetClass || ''}`}
+              y={30 + idx * 10}
+              duration={1}
+            >
+              <div className="group relative overflow-hidden rounded-2xl border border-ink/10 shadow-md">
+                <div
+                  className={`w-full ${item.aspect} img-placeholder transition-transform duration-700 ease-out group-hover:scale-105`}
+                  style={{
+                    backgroundImage: `url('${item.image}')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div>
+                    <p className="text-xs font-mono text-warm-white/70 uppercase tracking-widest">{item.subtitle}</p>
+                    <h3 className="text-warm-white text-xl font-display font-semibold">{item.title}</h3>
+                  </div>
+                </div>
+              </div>
+            </RevealSection>
+          );
+        })}
+      </div>
     </section>
   );
 };

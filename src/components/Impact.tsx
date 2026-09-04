@@ -1,0 +1,81 @@
+'use client';
+
+import React from 'react';
+import RevealSection from '@/components/RevealSection';
+import { impactData } from '@/data/siteData';
+
+const Impact: React.FC = () => {
+  return (
+    <section id="impact" className="bg-bone py-24 px-6 md:px-16 relative overflow-hidden">
+      {/* Background Watermark Text (Trevor Blount Style) */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-5">
+        <h2 className="text-[14vw] font-display font-bold text-ink whitespace-nowrap tracking-tighter uppercase">
+          {impactData.watermark}
+        </h2>
+      </div>
+
+      {/* Header */}
+      <RevealSection className="max-w-xl mb-16 relative z-10">
+        <p className="label-xs text-olive mb-2">{impactData.eyebrow}</p>
+        <h2 className="text-3xl md:text-5xl font-display font-semibold text-ink">
+          {impactData.title}
+        </h2>
+      </RevealSection>
+
+      {/* Asymmetric Cards Grid & Portrait Image (Trevor Blount layout) */}
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
+        {/* Left / Center: Asymmetric Stat Cards Grid */}
+        <div className="lg:col-span-8 grid md:grid-cols-12 gap-6 md:gap-8">
+          {impactData.stats.map((stat, idx) => (
+            <RevealSection
+              key={stat.id}
+              className={`bg-warm-white p-8 md:p-10 rounded-2xl border border-ink/10 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between ${stat.positionClass}`}
+              y={30 + idx * 15}
+            >
+              <div>
+                <span className="text-olive text-xs font-mono uppercase tracking-widest block mb-4">
+                  {stat.label}
+                </span>
+                <h3 className="text-4xl md:text-5xl font-display font-bold text-ink mb-4 tracking-tight">
+                  {stat.number}
+                </h3>
+              </div>
+              <p className="text-ink/70 text-sm md:text-base leading-relaxed">
+                {stat.description}
+              </p>
+            </RevealSection>
+          ))}
+        </div>
+
+        {/* Right: Portrait Image Card with Circular Mentor Stamp */}
+        <RevealSection className="lg:col-span-4 relative flex justify-center" y={40}>
+          <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl border-4 border-warm-white group">
+            <div
+              className="w-full aspect-[3/4] img-placeholder transition-transform duration-700 group-hover:scale-105"
+              style={{
+                backgroundImage: `url('${impactData.image}')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+            
+            {/* Circular Mentor Watermark Badge */}
+            <div className="absolute top-6 right-6 w-20 h-20 rounded-full bg-olive/90 backdrop-blur-sm text-warm-white p-2 border border-warm-white/30 flex items-center justify-center text-center shadow-lg transform rotate-12">
+              <span className="text-[9px] font-mono uppercase font-bold tracking-tighter leading-tight">
+                Certified • Mentor
+              </span>
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent flex items-end p-6">
+              <p className="text-warm-white font-display text-lg font-medium">
+                Mastery in motion.
+              </p>
+            </div>
+          </div>
+        </RevealSection>
+      </div>
+    </section>
+  );
+};
+
+export default Impact;

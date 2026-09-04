@@ -31,11 +31,20 @@ const RevealSection: React.FC<RevealSectionProps> = ({
     const el = ref.current;
     if (!el) return;
 
-    gsap.set(el, { opacity: 0, y });
+    // Check if element is already inside viewport on mount
+    const rect = el.getBoundingClientRect();
+    const isInViewport = rect.top < window.innerHeight * 0.9;
+
+    if (isInViewport) {
+      gsap.set(el, { opacity: 1, y: 0 });
+    } else {
+      gsap.set(el, { opacity: 0, y });
+    }
 
     const trigger = ScrollTrigger.create({
       trigger: el,
       start: 'top 85%',
+      once: true,
       onEnter: () => {
         gsap.to(el, {
           opacity: 1,
@@ -47,7 +56,15 @@ const RevealSection: React.FC<RevealSectionProps> = ({
       },
     });
 
-    return () => trigger.kill();
+    // Refresh ScrollTrigger to ensure accurate positions after DOM renders
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      trigger.kill();
+    };
   }, [y, duration, delay]);
 
   return (

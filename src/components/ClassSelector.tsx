@@ -1,6 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import classReformer from '../../public/eventsHero.webp';
+import classMat from '../../public/contactHero.webp';
+import classGroup from '../../public/shirtHero.webp';
+import classPrivate from '../../public/donationsHero1.webp';
 
 interface ClassOption {
   key: string;
@@ -14,25 +18,25 @@ const classOptions: ClassOption[] = [
     key: 'reformer',
     title: 'Reformer',
     description: 'Controlled resistance, precise movement',
-    image: '/images/classes/class-reformer.jpg',
+    image: classReformer.src,
   },
   {
     key: 'mat',
     title: 'Mat',
     description: 'Core work, controlled breathing',
-    image: '/images/classes/class-mat.jpg',
+    image: classMat.src,
   },
   {
     key: 'group',
     title: 'Group',
     description: 'Stability work, shared energy',
-    image: '/images/classes/class-group.jpg',
+    image: classGroup.src,
   },
   {
     key: 'private',
     title: 'Private',
     description: 'One-on-one, personalised guidance',
-    image: '/images/classes/class-private.jpg',
+    image: classPrivate.src,
   },
 ];
 
