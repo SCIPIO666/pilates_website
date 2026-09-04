@@ -9,8 +9,9 @@ if (typeof window !== 'undefined') {
 }
 
 interface RevealSectionProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   y?: number;
   duration?: number;
   delay?: number;
@@ -19,6 +20,7 @@ interface RevealSectionProps {
 const RevealSection: React.FC<RevealSectionProps> = ({
   children,
   className = '',
+  style,
   y = 30,
   duration = 1,
   delay = 0,
@@ -49,7 +51,7 @@ const RevealSection: React.FC<RevealSectionProps> = ({
   }, [y, duration, delay]);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} style={style}>
       {children}
     </div>
   );
