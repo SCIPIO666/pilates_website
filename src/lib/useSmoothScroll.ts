@@ -7,11 +7,7 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/**
- * Lenis smooth scroll, synced with GSAP's ticker so ScrollTrigger-driven
- * animations (RevealSection, gallery parallax, nav reveal, etc.) stay
- * in lockstep with the smoothed scroll position instead of the raw one.
- */
+
 export const useSmoothScroll = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;

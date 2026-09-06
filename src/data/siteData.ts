@@ -57,7 +57,6 @@ export interface ImpactStat {
 export const impactData = {
   eyebrow: 'STUDIO IMPACT & EXPERIENCE',
   title: 'Dedicated to movement mastery.',
-  watermark: 'REVIVAL IMPACT',
   image: impact.src,
   stats: [
     {
@@ -65,21 +64,21 @@ export const impactData = {
       number: '325+ hours',
       label: 'One-on-One Studio Sessions',
       description: 'Of individual practical training, body alignment assessments, and solo Reformer instruction.',
-      positionClass: 'lg:col-span-6 md:translate-y-0',
+      positionClass: 'md:col-span-6',
     },
     {
       id: 'stat-2',
       number: '500+ hours',
       label: 'Supervised Teaching',
       description: 'Of hands-on instruction in our Nairobi studio, guiding real clients under Maya’s mentorship.',
-      positionClass: 'lg:col-span-6 md:translate-y-10',
+      positionClass: 'md:col-span-6 md:mt-24',
     },
     {
       id: 'stat-3',
       number: '150+ hours',
       label: 'Anatomy & Breathwork',
       description: 'Of specialized studies in hypermobility care, spinal decompression, and controlled breathing.',
-      positionClass: 'lg:col-span-6 md:-translate-y-4',
+      positionClass: 'md:col-span-6 md:mt-12',
     },
   ],
 };

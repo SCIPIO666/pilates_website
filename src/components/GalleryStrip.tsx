@@ -3,9 +3,10 @@
 import React from 'react';
 import RevealSection from '@/components/RevealSection';
 import { galleryStripData } from '@/data/siteData';
+import  {useTransitionReveal} from '@/lib/useTransitionReveal'
+import { useRef } from 'react';
 
-// Left-only, right-only, both-top, and a soft full-round variant — cycled so
-// no two neighbouring cards share the same arch, echoing varied archway widths.
+//container variants
 const shapeClasses = [
   'rounded-tl-[100px]',
   'rounded-t-[100px]',
@@ -14,14 +15,17 @@ const shapeClasses = [
 ];
 
 const GalleryStrip: React.FC = () => {
-  // Duplicate the set once so the track can loop seamlessly: animating the
-  // combined (200%-wide) track by exactly -50% always lines the second copy
-  // up perfectly where the first one started.
+  // infinite loop
+    const sectionRef = useRef<HTMLElement>(null);
+  useTransitionReveal(sectionRef);
   const loopItems = [...galleryStripData, ...galleryStripData];
   const trackDuration = `${galleryStripData.length * 4}s`;
 
   return (
-    <section className="bg-olive py-16 px-4 md:px-12 overflow-hidden border-t border-warm-white/10 text-warm-white">
+    <section 
+    ref={sectionRef}
+     data-transition-style="in:circle:hesitate"
+    className="bg-olive py-16 px-4 md:px-12 overflow-hidden border-t border-warm-white/10 text-warm-white">
       {/* Header */}
       <RevealSection className="text-center mb-10">
         <p className="font-display text-2xl md:text-4xl text-warm-white tracking-wide font-light">
@@ -29,7 +33,7 @@ const GalleryStrip: React.FC = () => {
         </p>
       </RevealSection>
 
-      {/* Infinite horizontal marquee of arch-shaped cards */}
+      {/* infinite marquee  */}
       <RevealSection className="w-full" y={30}>
         <div className="overflow-hidden w-full">
           <div

@@ -24,7 +24,7 @@ const Gallery: React.FC = () => {
     <section id="gallery" className="bg-bone py-24 px-6 md:px-16 overflow-hidden">
       {/* Header */}
       <RevealSection className="max-w-xl mb-16">
-        <p className="label-xs text-olive mb-2">STUDIO ARCHITECTURE</p>
+        <p className="label-xs text-olive mb-2">STUDIO</p>
         <h2 className="text-3xl md:text-5xl font-display font-semibold text-ink">
           Designed for quiet focus &amp; reflection.
         </h2>
