@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:wght@400;600;700&display=swap');
 
+@import './section-transitions.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

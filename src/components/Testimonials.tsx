@@ -104,11 +104,16 @@ const Testimonials: React.FC = () => {
   return (
     <section id="testimonials" ref={sectionRef} className="bg-warm-white relative overflow-hidden">
       <div ref={stageRef} className="relative h-screen flex flex-col justify-center px-6 md:px-16 py-16">
-        {/* watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-10">
-          <h2 className="text-[12vw] font-display font-bold text-ink whitespace-nowrap tracking-tighter">
-            REVIVAL . PILATES . REVIVAL . PILATES
-          </h2>
+        {/* watermark — infinite x-axis marquee (reuses the marquee-x keyframe from globals.css) */}
+        <div className="absolute inset-0 flex items-center pointer-events-none select-none overflow-hidden opacity-10">
+          <div className="flex w-max animate-[marquee-x_28s_linear_infinite]">
+            <h2 className="text-[12vw] font-display font-bold text-ink whitespace-nowrap tracking-tighter pr-12">
+              REVIVAL . PILATES . REVIVAL . PILATES
+            </h2>
+            <h2 className="text-[12vw] font-display font-bold text-ink whitespace-nowrap tracking-tighter pr-12">
+              REVIVAL . PILATES . REVIVAL . PILATES
+            </h2>
+          </div>
         </div>
 
         {/* Top Bar Header & Stat */}

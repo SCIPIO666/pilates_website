@@ -1,0 +1,72 @@
+/* signature section transitions*/
+/* attributes driven */
+
+/*circle in */
+[data-transition-style="in:circle"] {
+  clip-path: circle(0%);
+}
+[data-transition-style="in:circle"].is-active {
+  animation: circle-in var(--duration-slow) var(--ease-out) forwards;
+}
+
+@keyframes circle-in {
+  0%   { clip-path: circle(0%); }
+  100% { clip-path: circle(125%); }
+}
+
+/* circle in hesitate*/
+[data-transition-style="in:circle:hesitate"] {
+  clip-path: circle(0%);
+}
+[data-transition-style="in:circle:hesitate"].is-active {
+  animation: circle-in-hesitate 2.5s cubic-bezier(0.25, 1, 0.3, 1) both;
+}
+@keyframes circle-in-hesitate {
+  0%   { clip-path: circle(0%); }
+  40%  { clip-path: circle(40%); }
+  100% { clip-path: circle(125%); }
+}
+
+/* circle out */
+[data-transition-style="out:circle"] {
+  clip-path: circle(125%);
+}
+[data-transition-style="out:circle"].is-active {
+  animation: circle-out var(--duration-slow) var(--ease-in-out) forwards;
+}
+@keyframes circle-out {
+  0%   { clip-path: circle(125%); }
+  100% { clip-path: circle(0%); }
+}
+
+/* blob morph in */
+[data-transition-style="in:blob"] {
+  clip-path: circle(0% at 30% 50%);
+}
+[data-transition-style="in:blob"].is-active {
+  animation: blob-in var(--duration-slow) var(--ease-bounce) forwards;
+}
+@keyframes blob-in {
+  0%   { clip-path: circle(0% at 30% 50%); }
+  60%  { clip-path: ellipse(70% 55% at 40% 50%); }
+  100% { clip-path: circle(125% at 50% 50%); }
+}
+
+/* diagonal wipe in */
+[data-transition-style="in:wipe:diagonal"] {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+[data-transition-style="in:wipe:diagonal"].is-active {
+  animation: wipe-diagonal-in var(--duration-base) var(--ease-out) forwards;
+}
+@keyframes wipe-diagonal-in {
+  0%   { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+  100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-transition-style] {
+    clip-path: none !important;
+    animation: none !important;
+  }
+}

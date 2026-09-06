@@ -1,12 +1,21 @@
 'use client';
 
-import React from 'react';
+import React  from 'react';
 import RevealSection from '@/components/RevealSection';
 import { classesData } from '@/data/siteData';
+import { useTransitionReveal } from '@/lib/useTransitionReveal';
+import { useRef } from 'react';
 
 const Classes: React.FC = () => {
+
+  const sectionRef = useRef<HTMLElement>(null);
+  useTransitionReveal(sectionRef);
+
   return (
-    <section id="classes" className="bg-olive text-warm-white py-24 px-6 md:px-16 overflow-hidden">
+    <section id="classes" 
+      ref={sectionRef}
+      data-transition-style="in:circle:hesitate"
+      className="bg-olive text-warm-white py-24 px-6 md:px-16 overflow-hidden">
       {/* Section Header */}
       <RevealSection className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-warm-white/20">
         <div>
