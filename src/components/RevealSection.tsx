@@ -1,74 +1,56 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 interface RevealSectionProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+  children: React.ReactNode;
   y?: number;
+  scale?: number;
   duration?: number;
   delay?: number;
+  className?: string;
 }
 
 const RevealSection: React.FC<RevealSectionProps> = ({
   children,
-  className = '',
-  style,
-  y = 30,
+  y = 40,
+  scale = 1,
   duration = 1,
   delay = 0,
+  className = '',
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    if (!sectionRef.current) return;
 
-    // Check if element is already inside viewport on mount
-    const rect = el.getBoundingClientRect();
-    const isInViewport = rect.top < window.innerHeight * 0.9;
-
-    if (isInViewport) {
-      gsap.set(el, { opacity: 1, y: 0 });
-    } else {
-      gsap.set(el, { opacity: 0, y });
-    }
-
-    const trigger = ScrollTrigger.create({
-      trigger: el,
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
-        gsap.to(el, {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0, y, scale },
+        {
           opacity: 1,
           y: 0,
+          scale: 1,
           duration,
           delay,
           ease: 'power2.out',
-        });
-      },
-    });
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            toggleActions: "play reverse play reverse"
+          },
+        }
+      );
+    }, sectionRef);
 
-    // Refresh ScrollTrigger to ensure accurate positions after DOM renders
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-      trigger.kill();
-    };
-  }, [y, duration, delay]);
+    return () => ctx.revert();
+  }, [y, scale, duration, delay]);
 
   return (
-    <div ref={ref} className={className} style={style}>
+    <div ref={sectionRef} className={className}>
       {children}
     </div>
   );

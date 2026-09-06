@@ -16,7 +16,7 @@ const Classes: React.FC = () => {
       ref={sectionRef}
       data-transition-style="in:circle:hesitate"
       className="bg-olive text-warm-white py-24 px-6 md:px-16 overflow-hidden">
-      {/* Section Header */}
+
       <RevealSection className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-warm-white/20">
         <div>
           <p className="label-xs text-olive-light mb-2">CLASSES &amp; PRACTICE</p>
@@ -27,17 +27,17 @@ const Classes: React.FC = () => {
         </p>
       </RevealSection>
 
-      {/* Full-width Class Rows */}
+      {/* classes */}
       <div className="flex flex-col divide-y divide-warm-white/15 border-t border-b border-warm-white/15">
         {classesData.map((cls, idx) => (
-          <RevealSection key={cls.id} y={30} delay={idx * 0.06}>
+          <RevealSection key={cls.id} y={30} scale={0.5} delay={idx * 0.06}>
             <div className="group grid grid-cols-1 md:grid-cols-[minmax(90px,140px)_1.1fr_1fr] items-center gap-6 md:gap-12 py-10 md:py-12 hover:py-16 transition-[padding] duration-500 ease-out">
-              {/* Step Number */}
+
               <span className="font-display font-bold text-7xl md:text-8xl leading-none text-warm-white/15 group-hover:text-olive-light transition-colors duration-500 select-none">
                 {cls.stepNumber}
               </span>
 
-              {/* Image */}
+
               <div className="relative w-full h-[240px] md:h-[300px] overflow-hidden rounded-2xl img-placeholder">
                 <div
                   className="w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
@@ -49,7 +49,7 @@ const Classes: React.FC = () => {
                 />
               </div>
 
-              {/* Title, CTA + reveal-on-hover description */}
+
               <div className="flex flex-col">
                 <span className="text-olive-light text-xs font-mono uppercase tracking-widest mb-1">
                   {cls.subtitle}
@@ -63,17 +63,17 @@ const Classes: React.FC = () => {
                     <p className="text-warm-white/80 text-sm leading-relaxed mb-4 max-w-md">
                       {cls.description}
                     </p>
-                    <ul className="space-y-2.5 mb-6">
+                    <ol className="space-y-2.5 mb-6">
                       {cls.bulletPoints.map((pt, i) => (
                         <li
                           key={i}
                           className="flex items-start gap-2.5 text-xs md:text-sm text-warm-white/70 font-medium"
                         >
-                          <span className="text-olive-light font-bold">✓</span>
+                          {/* <span className="text-olive-light font-bold">✓</span> */}
                           <span>{pt}</span>
                         </li>
                       ))}
-                    </ul>
+                    </ol>
                   </div>
                 </div>
 
