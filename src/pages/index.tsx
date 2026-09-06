@@ -33,8 +33,9 @@ export default function Home() {
         <Instructor />
         <Gallery />
         <GalleryStrip />
-        <Pricing />
         <Testimonials />
+        <Pricing />
+
       </main>
       <Footer />
     </>

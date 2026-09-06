@@ -94,9 +94,8 @@ a.cta-olive {
   border-color: #5C6B3C;
 }
 
-/* ----------------------------------------------
- * Uiverse Interactive Reusable CTA Button
- * ---------------------------------------------- */
+
+/* button */
 
 .btn-cta {
   position: relative;
@@ -171,7 +170,7 @@ a.cta-olive {
   gap: 8px;
 }
 
-/* Variations */
+/* button variations */
 
 .btn-cta-white {
   border: 1.5px solid #F5F0EB;
@@ -264,7 +263,7 @@ section {
   }
 }
 
-/* Smooth animations */
+/*animations */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -286,7 +285,7 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-/* Scrollbar styling (optional) */
+/* Scrollbar  */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -304,10 +303,8 @@ a:focus-visible {
   background: #3d4a2c;
 }
 
-/* ----------------------------------------------
- * Animista Ken Burns Animations
- * ---------------------------------------------- */
 
+/* hero animation */
 .kenburns-right {
   animation: kenburns-right 8s ease-out infinite alternate both;
 }
@@ -369,5 +366,18 @@ a:focus-visible {
   100% {
     transform: scale(1.25) translateY(-20px);
     transform-origin: top;
+  }
+
+
+  
+}
+
+  /* gallery outro */
+@keyframes marquee-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }

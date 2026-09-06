@@ -13,9 +13,9 @@ import class1 from '../../public/classes/classes (1).jpg'
 import class2 from '../../public/classes/classes (2).jpg'
 import class3 from '../../public/classes/classes (3).jpg'
 import class4 from '../../public/classes/classes (4).jpg'
-// import class5 from '../../public/classes/classes (5).jpg'
-// import class6 from '../../public/classes/classes (6).jpg'
-// import class7 from '../../public/classes/classes (7).jpg'
+import class5 from '../../public/classes/classes (5).jpg'
+import class6 from '../../public/classes/classes (6).jpg'
+import class7 from '../../public/classes/classes (7).jpg'
 
 
 // impact
@@ -129,7 +129,7 @@ export const classesData: ClassItem[] = [
   },
   {
     id: 'mat',
-    stepNumber: '0}',
+    stepNumber: '02',
     title: 'Mat Pilates Flow',
     subtitle: 'Core Engagement & Breathwork',
     description:
@@ -213,31 +213,55 @@ export const reviewsData: ReviewItem[] = [
 export const galleryData: GalleryItem[] = [
   {
     id: 'g1',
-    title: 'Studio Interior',
-    subtitle: 'Nairobi Sanctuary',
+    title: 'Full-Body Extension',
+    subtitle: 'Reformer Flow',
     image: gallery1.src,
     aspect: 'aspect-[4/3]',
   },
   {
     id: 'g2',
-    title: 'Reformer Equipment',
-    subtitle: 'Precision Hardware',
+    title: 'Core-Led Control',
+    subtitle: 'Precision Movement',
     image: gallery2.src,
     aspect: 'aspect-[3/4]',
     offsetClass: 'md:translate-y-12',
   },
   {
     id: 'g3',
-    title: 'Movement Room',
-    subtitle: 'Sunlit Practice',
+    title: 'Balanced Stretch',
+    subtitle: 'Mat Practice',
     image: gallery3.src,
     aspect: 'aspect-[16/9]',
   },
   {
     id: 'g4',
-    title: 'Restorative Corner',
-    subtitle: 'Post-Session Warmth',
+    title: 'Strength in Stillness',
+    subtitle: 'Breath & Form',
     image: gallery4.src,
+    aspect: 'aspect-[4/3]',
+    offsetClass: 'md:-translate-y-8',
+  },
+  {
+    id: 'g5',
+    title: 'Rooted Alignment',
+    subtitle: 'Guided Sequence',
+    image: class5.src,
+    aspect: 'aspect-[4/3]',
+    offsetClass: 'md:-translate-y-8',
+  },
+  {
+    id: 'g6',
+    title: 'Controlled Flow',
+    subtitle: 'Studio Session',
+    image: class6.src,
+    aspect: 'aspect-[4/3]',
+    offsetClass: 'md:-translate-y-8',
+  },
+  {
+    id: 'g7',
+    title: 'Mindful Movement',
+    subtitle: 'Full-Body Focus',
+    image: class7.src,
     aspect: 'aspect-[4/3]',
     offsetClass: 'md:-translate-y-8',
   },
@@ -251,5 +275,5 @@ export const galleryStripData = [
   { id: 's5', title: 'Restorative Form', image: outro5.src },
   { id: 's6', title: 'Restorative Form', image: outro6.src },
   { id: 's7', title: 'Restorative Form', image: outro7.src },
-  { id: 's5', title: 'Restorative Form', image: outro8.src },
+  { id: 's8', title: 'Restorative Form', image: outro8.src },
 ];
