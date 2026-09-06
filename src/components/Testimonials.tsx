@@ -25,11 +25,26 @@ const Testimonials: React.FC = () => {
     if (!stage || cards.length === 0) return;
 
     const ctx = gsap.context(() => {
-      //  all cards out of view except one
+      // Animista "tilt-in-fwd-tr" start pose for every card: rotated back in
+      // 3D space, flung up-and-right, skewed, invisible. Card 0 snaps
+      // straight to its settled pose so the section doesn't open empty.
       cards.forEach((card, i) => {
-        gsap.set(card, { y: '120%', opacity: 0, rotation: 0, xPercent: 0, yPercent: 0, scale: 1, zIndex: i + 1 });
+        gsap.set(card, {
+          rotationY: 20,
+          rotationX: 35,
+          x: 300,
+          y: -300,
+          skewX: -35,
+          skewY: 10,
+          opacity: 0,
+          xPercent: 0,
+          yPercent: 0,
+          scale: 1,
+          rotation: 0,
+          zIndex: i + 1,
+        });
       });
-      gsap.set(cards[0], { y: '0%', opacity: 1 });
+      gsap.set(cards[0], { rotationY: 0, rotationX: 0, x: 0, y: 0, skewX: 0, skewY: 0, opacity: 1 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -45,15 +60,26 @@ const Testimonials: React.FC = () => {
       for (let i = 1; i < cards.length; i++) {
         const label = `card-${i}`;
 
-        // card entry
-        tl.fromTo(
+        // Card entry: tilt-in-fwd-tr — settles from its rotated/skewed
+        // off-pose into flat, centered, and fully visible.
+        tl.to(
           cards[i],
-          { y: '120%', opacity: 0, rotation: 0 ,scale: 0.3},
-          { y: '0%', opacity: 1, rotation: 360, scale: 1,duration: 1, ease: 'power2.inOut' },
+          {
+            rotationY: 0,
+            rotationX: 0,
+            x: 0,
+            y: 0,
+            skewX: 0,
+            skewY: 0,
+            opacity: 1,
+            duration: 1,
+            ease: 'power2.out',
+          },
           label
         );
 
-        // card moves to the side
+        // Every card already on stage gets nudged one notch deeper into the
+        // side-stack at the same time.
         for (let j = 0; j < i; j++) {
           const depth = i - j;
           tl.to(
@@ -83,9 +109,6 @@ const Testimonials: React.FC = () => {
           <h2 className="text-[12vw] font-display font-bold text-ink whitespace-nowrap tracking-tighter">
             REVIVAL . PILATES . REVIVAL . PILATES
           </h2>
-          <h2 className="text-[12vw] font-display font-bold text-ink whitespace-nowrap tracking-tighter">
-            REVIVAL . PILATES . REVIVAL . PILATES
-          </h2>
         </div>
 
         {/* Top Bar Header & Stat */}
@@ -102,7 +125,10 @@ const Testimonials: React.FC = () => {
         </div>
 
         {/* card stack */}
-        <div className="relative w-full max-w-lg mx-auto h-[440px] md:h-[400px]">
+        <div
+          className="relative w-full max-w-lg mx-auto h-[440px] md:h-[400px]"
+          style={{ perspective: 1200 }}
+        >
           {reviewsData.map((rev, idx) => {
             const theme = cardThemes[idx % cardThemes.length];
 
@@ -115,7 +141,6 @@ const Testimonials: React.FC = () => {
                 className={`absolute inset-0 p-8 md:p-10 rounded-2xl border shadow-2xl ${theme.bg} ${theme.border}`}
                 style={{ willChange: 'transform, opacity' }}
               >
-
                 <div className="flex items-center justify-between mb-6">
                   <div className={`flex gap-1 text-sm ${theme.star}`}>
                     {Array.from({ length: rev.rating }).map((_, i) => (
@@ -126,7 +151,6 @@ const Testimonials: React.FC = () => {
                     0{idx + 1} / 0{reviewsData.length}
                   </span>
                 </div>
-
 
                 <div className="flex items-center gap-4 mb-6">
                   <div
@@ -143,7 +167,6 @@ const Testimonials: React.FC = () => {
                   </div>
                 </div>
 
-  
                 <p className={`text-sm md:text-base leading-relaxed ${theme.sub}`}>"{rev.quote}"</p>
               </div>
             );
