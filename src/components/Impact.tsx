@@ -23,7 +23,7 @@ const Impact: React.FC = () => {
           {impactData.stats.map((stat, idx) => (
             <RevealSection key={stat.id} className={stat.positionClass} y={30 + idx * 15}>
               <div
-                className="rounded-2xl bg-transparent shadow-token-md border border-border
+                className="rounded-2xl bg-white/50 shadow-token-md border border-border
                   p-10 md:p-12 flex flex-col items-center text-center h-full"
               >
                 <h3 className="font-heading font-bold text-ink text-5xl md:text-6xl mb-4 tracking-tight">

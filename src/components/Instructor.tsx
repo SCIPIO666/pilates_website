@@ -1,13 +1,47 @@
 'use client';
 
-import React from 'react';
-import RevealSection from '@/components/RevealSection';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import instructorImg from '../../public/instructor/instructor.jpg';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Instructor: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const imageWrapRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+          onEnter: () => frameRef.current?.classList.add('is-active'),
+          onLeaveBack: () => frameRef.current?.classList.remove('is-active'),
+        },
+        defaults: { ease: 'power3.out' },
+      });
+
+      tl.fromTo(textRef.current, { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.9 })
+        .fromTo(imageWrapRef.current, { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.9 }, '-=0.5');
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="instructor" className="grid md:grid-cols-2 gap-10 md:gap-16 items-center bg-warm-white overflow-hidden py-16 px-6 md:px-12">
-      <RevealSection className="order-2 md:order-1 max-w-md" y={30} duration={1}>
+    <section
+      ref={sectionRef}
+      id="instructor"
+      className="grid md:grid-cols-2 gap-10 md:gap-16 items-center bg-warm-white overflow-hidden py-16 px-6 md:px-12"
+    >
+      <div ref={textRef} className="order-2 md:order-1 max-w-md">
         <p className="label-xs mb-4">Meet Your Instructor</p>
         <h2 className="mb-2">Maya</h2>
         <p className="label-xs mb-6 text-ink/50 normal-case tracking-normal font-medium">
@@ -25,15 +59,12 @@ const Instructor: React.FC = () => {
         <a href="#book" className="cta cta-olive">
           Book with Maya
         </a>
-      </RevealSection>
+      </div>
 
-      <RevealSection
+      <div
+        ref={imageWrapRef}
         className="order-1 md:order-2 relative flex items-center justify-center py-6"
-        y={30}
-        duration={1}
-        delay={0.15}
       >
-        {/* Organic Blobs around image frame (Jeannie Di Bon style) */}
         <svg
           className="absolute -top-6 right-4 md:right-8 w-36 h-36 md:w-48 md:h-48 text-clay/50 pointer-events-none transform rotate-12"
           viewBox="0 0 200 200"
@@ -58,8 +89,9 @@ const Instructor: React.FC = () => {
           <path d="M48.1,-57.3C61.4,-47.1,70.5,-30.9,72.9,-13.6C75.3,3.7,71,22.1,61.7,37.2C52.4,52.3,38.1,64.1,21.8,69.5C5.5,74.9,-12.8,73.9,-28.7,66.8C-44.6,59.7,-58.1,46.5,-65.8,30.3C-73.5,14.1,-75.4,-5.1,-70.3,-22.1C-65.2,-39.1,-53.1,-53.9,-38.5,-63.4C-23.9,-72.9,-6.8,-77.1,7.8,-76.3C22.4,-75.5,34.8,-67.5,48.1,-57.3Z" transform="translate(100 100)" />
         </svg>
 
-        {/* Rounded Image Frame */}
         <div
+          ref={frameRef}
+          data-transition-style="in:circle:hesitate"
           className="img-placeholder relative z-10 w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-bone shadow-lg mx-auto"
           style={{
             backgroundImage: `url('${instructorImg.src}')`,
@@ -67,7 +99,7 @@ const Instructor: React.FC = () => {
             backgroundPosition: 'center',
           }}
         />
-      </RevealSection>
+      </div>
     </section>
   );
 };
