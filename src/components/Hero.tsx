@@ -1,9 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import homeHero from '../../public/homeHero.webp';
-import homeHero2 from '../../public/homeHero2.webp';
-import homeHer03 from '../../public/homeHer03.webp';
+import CtaButton from '@/components/CtaButton';
+
+// Import images from the correct path
+import hero1 from '../../public/heroCarousel/hero1.jpg';
+import hero2 from '../../public/heroCarousel/hero2.jpg';
+import hero3 from '../../public/heroCarousel/hero3.jpg';
 
 interface HeroSlide {
   id: string;
@@ -22,7 +25,7 @@ const heroSlides: HeroSlide[] = [
     eyebrow: 'Nairobi · Boutique Pilates Studio',
     title: 'Strength, restored from the inside out.',
     subtitle: 'Reformer, Mat, Group & Private sessions tailored to meet you exactly where you are.',
-    image: homeHero.src,
+    image: hero1.src,
     animationClass: 'kenburns-right',
     primaryCta: { text: 'Book a Class', href: '#book' },
     secondaryCta: { text: 'Our Philosophy', href: '#philosophy' },
@@ -32,7 +35,7 @@ const heroSlides: HeroSlide[] = [
     eyebrow: 'Precision & Alignment',
     title: 'Move with intention. Live with balance.',
     subtitle: 'Building quiet power and postural alignment through expert, unhurried instruction.',
-    image: homeHero2.src,
+    image: hero2.src,
     animationClass: 'kenburns-left',
     primaryCta: { text: 'Explore Classes', href: '#classes' },
     secondaryCta: { text: 'Rates & Packs', href: '#pricing' },
@@ -42,7 +45,7 @@ const heroSlides: HeroSlide[] = [
     eyebrow: 'Restorative Sanctuary',
     title: 'A space designed to slow you down.',
     subtitle: 'Experience considered design, warm light, and personalized movement care in Nairobi.',
-    image: homeHer03.src,
+    image: hero3.src,
     animationClass: 'kenburns-top',
     primaryCta: { text: 'Meet Instructor', href: '#instructor' },
     secondaryCta: { text: 'Studio Gallery', href: '#gallery' },
@@ -51,10 +54,15 @@ const heroSlides: HeroSlide[] = [
 
 const Hero: React.FC = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIdx((prev) => (prev + 1) % heroSlides.length);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentIdx((prev) => (prev + 1) % heroSlides.length);
+        setIsTransitioning(false);
+      }, 300);
     }, 6500);
     return () => clearInterval(timer);
   }, []);
@@ -63,13 +71,13 @@ const Hero: React.FC = () => {
 
   return (
     <section id="top" className="relative w-full h-screen min-h-[640px] p-0 overflow-hidden bg-ink">
-      {/* Background Slides with Animista Ken Burns animations */}
+      {/* Background Slides with Ken Burns animations */}
       {heroSlides.map((slide, idx) => {
         const isActive = idx === currentIdx;
         return (
           <div
             key={slide.id}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
               isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
           >
@@ -90,29 +98,53 @@ const Hero: React.FC = () => {
 
       {/* Hero Content Overlay */}
       <div className="relative z-20 h-full flex flex-col justify-end px-6 md:px-16 pb-20 md:pb-24 max-w-5xl">
-        {/* Eyebrow Label */}
-        <p className="label-xs text-olive-light mb-4 font-mono tracking-widest">
+        {/* Eyebrow Label with fade animation */}
+        <p 
+          key={`eyebrow-${currentIdx}`}
+          className="label-xs text-olive-light mb-4 font-mono tracking-widest transition-all duration-700 ease-in-out"
+        >
           {currentSlide.eyebrow}
         </p>
 
-        {/* Dynamic Title */}
-        <h1 className="text-warm-white text-4xl md:text-6xl font-display font-bold leading-tight mb-4 max-w-3xl transition-all duration-700">
+        {/* Dynamic Title with slide animation */}
+        <h1 
+          key={`title-${currentIdx}`}
+          className="text-warm-white text-4xl md:text-6xl font-display font-bold leading-tight mb-4 max-w-3xl transition-all duration-700 ease-in-out"
+          style={{
+            transform: isTransitioning ? 'translateY(-20px)' : 'translateY(0)',
+            opacity: isTransitioning ? 0 : 1,
+          }}
+        >
           {currentSlide.title}
         </h1>
 
         {/* Subtitle Description */}
-        <p className="text-warm-white/80 text-base md:text-lg max-w-xl mb-8 leading-relaxed">
+        <p 
+          key={`subtitle-${currentIdx}`}
+          className="text-warm-white/80 text-base md:text-lg max-w-xl mb-8 leading-relaxed transition-all duration-700 ease-in-out delay-100"
+          style={{
+            transform: isTransitioning ? 'translateY(-15px)' : 'translateY(0)',
+            opacity: isTransitioning ? 0 : 1,
+          }}
+        >
           {currentSlide.subtitle}
         </p>
 
         {/* CTAs */}
-        <div className="flex items-center gap-6 mb-12">
-          <a href={currentSlide.primaryCta.href} className="cta cta-white text-sm">
+        <div 
+          key={`ctas-${currentIdx}`}
+          className="flex items-center gap-6 mb-12 transition-all duration-700 ease-in-out delay-200"
+          style={{
+            transform: isTransitioning ? 'translateY(-10px)' : 'translateY(0)',
+            opacity: isTransitioning ? 0 : 1,
+          }}
+        >
+          <CtaButton href={currentSlide.primaryCta.href} variant="white" size="md">
             {currentSlide.primaryCta.text}
-          </a>
-          <a href={currentSlide.secondaryCta.href} className="cta cta-white text-sm opacity-80 hover:opacity-100">
+          </CtaButton>
+          <CtaButton href={currentSlide.secondaryCta.href} variant="white" size="md">
             {currentSlide.secondaryCta.text}
-          </a>
+          </CtaButton>
         </div>
 
         {/* Slide Indicators & Controls */}
@@ -121,7 +153,13 @@ const Hero: React.FC = () => {
             {heroSlides.map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => setCurrentIdx(idx)}
+                onClick={() => {
+                  setIsTransitioning(true);
+                  setTimeout(() => {
+                    setCurrentIdx(idx);
+                    setIsTransitioning(false);
+                  }, 300);
+                }}
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-500 ${
                   currentIdx === idx ? 'w-10 bg-olive-light' : 'w-3 bg-warm-white/30 hover:bg-warm-white/60'

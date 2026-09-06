@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import classReformer from '../../public/eventsHero.webp';
-import classMat from '../../public/contactHero.webp';
-import classGroup from '../../public/shirtHero.webp';
-import classPrivate from '../../public/donationsHero1.webp';
+import classReformer from '../../public/classes/classes (1).jpg';
+import classMat from '../../public/classes/classes (2).jpg';
+import classGroup from '../../public/classes/classes (3).jpg';
+import classPrivate from '../../public/classes/classes (4).jpg';
 
 interface ClassOption {
   key: string;

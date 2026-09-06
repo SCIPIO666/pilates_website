@@ -1,5 +1,5 @@
 import React from 'react';
-import philosophyImg from '../../public/aboutusHero.webp';
+import philosophyImg from '../../public/about/aboutusHero.jpg';
 
 const Philosophy: React.FC = () => {
   return (

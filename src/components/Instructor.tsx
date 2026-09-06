@@ -2,7 +2,7 @@
 
 import React from 'react';
 import RevealSection from '@/components/RevealSection';
-import instructorImg from '../../public/heroBio.webp';
+import instructorImg from '../../public/instructor/instructor.jpg';
 
 const Instructor: React.FC = () => {
   return (
