@@ -11,7 +11,7 @@ interface ClassOption {
   key: string;
   title: string;
   description: string;
-  image: StaticImageData; // Add import type
+  image: StaticImageData; 
 }
 
 const classOptions: ClassOption[] = [
@@ -19,30 +19,55 @@ const classOptions: ClassOption[] = [
     key: 'reformer',
     title: 'Reformer',
     description: 'Controlled resistance, precise movement',
-    image: classReformer, // Removed .src
+    image: classReformer, 
   },
   {
     key: 'mat',
     title: 'Mat',
     description: 'Core work, controlled breathing',
-    image: classMat, // Removed .src
+    image: classMat, 
   },
   {
     key: 'group',
     title: 'Group',
     description: 'Stability work, shared energy',
-    image: classGroup, // Removed .src
+    image: classGroup, 
   },
   {
     key: 'private',
     title: 'Private',
     description: 'One-on-one, personalised guidance',
-    image: classPrivate, // Removed .src
+    image: classPrivate, 
   },
 ];
 
 const ClassSelector: React.FC = () => {
-  // ... state and effects remain the same
+ const [activeIndex, setActiveIndex] = useState(0);
+  const [revealed, setRevealed] = useState<number[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    classOptions.forEach((_, i) => {
+      const t = setTimeout(() => {
+        setRevealed((prev) => [...prev, i]);
+      }, 120 * i);
+      timers.push(t);
+    });
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const handleSelect = (index: number) => {
+    if (index !== activeIndex) setActiveIndex(index);
+  };
 
   return (
     <div ref={containerRef} className="w-full">
