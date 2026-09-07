@@ -70,7 +70,7 @@ const ClassSelector: React.FC = () => {
 
   return (
     <div ref={containerRef} className="w-full">
-      {/* MOBILE: horizontal scroll, snap, equal-width cards */}
+      {/* mobile: full width cards,snap on click */}
       {isMobile ? (
         <div
           className="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 snap-x snap-mandatory"
@@ -95,7 +95,7 @@ const ClassSelector: React.FC = () => {
           ))}
         </div>
       ) : (
-        /* DESKTOP: interactive expand-on-click selector */
+        /* desktop: interactive expand-on-click/hover  */
         <div className="flex w-full h-[460px] items-stretch overflow-hidden gap-1">
           {classOptions.map((option, index) => {
             const isActive = activeIndex === index;

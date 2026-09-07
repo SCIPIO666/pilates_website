@@ -8,7 +8,6 @@ const Impact: React.FC = () => {
   return (
     <section id="impact" className="bg-bone py-24 px-6 md:px-16 relative overflow-hidden">
 
-      {/* header */}
       <RevealSection className="max-w-xl mb-16 relative z-10">
         <p className="label-xs text-olive mb-2">{impactData.eyebrow}</p>
         <h2 className="text-3xl md:text-5xl font-display font-semibold text-ink">
@@ -18,7 +17,7 @@ const Impact: React.FC = () => {
 
       {/* grid*/}
       <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
-        {/* cards */}
+
         <div className="lg:col-span-8 grid md:grid-cols-12 gap-6 md:gap-8">
           {impactData.stats.map((stat, idx) => (
             <RevealSection key={stat.id} className={stat.positionClass} y={30 + idx * 15} scale={0.5} delay={idx * 0.15}>

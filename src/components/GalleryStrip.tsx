@@ -15,7 +15,7 @@ const shapeClasses = [
 ];
 
 const GalleryStrip: React.FC = () => {
-  // infinite loop
+
     const sectionRef = useRef<HTMLElement>(null);
   useTransitionReveal(sectionRef);
   const loopItems = [...galleryStripData, ...galleryStripData];
@@ -26,7 +26,7 @@ const GalleryStrip: React.FC = () => {
     ref={sectionRef}
      data-transition-style="in:circle:hesitate"
     className="bg-olive py-16 px-4 md:px-12 overflow-hidden border-t border-warm-white/10 text-warm-white">
-      {/* Header */}
+
       <RevealSection className="text-center mb-10">
         <p className="font-display text-2xl md:text-4xl text-warm-white tracking-wide font-light">
           @revival <span className="text-olive-light">· studio</span>

@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { reviewsData } from '@/data/siteData';
-
+import AnimatedHeading from './AnimatedHeading';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -25,9 +25,7 @@ const Testimonials: React.FC = () => {
     if (!stage || cards.length === 0) return;
 
     const ctx = gsap.context(() => {
-      // Animista "tilt-in-fwd-tr" start pose for every card: rotated back in
-      // 3D space, flung up-and-right, skewed, invisible. Card 0 snaps
-      // straight to its settled pose so the section doesn't open empty.
+  
       cards.forEach((card, i) => {
         gsap.set(card, {
           rotationY: 20,
@@ -60,8 +58,7 @@ const Testimonials: React.FC = () => {
       for (let i = 1; i < cards.length; i++) {
         const label = `card-${i}`;
 
-        // Card entry: tilt-in-fwd-tr — settles from its rotated/skewed
-        // off-pose into flat, centered, and fully visible.
+        // Card entry
         tl.to(
           cards[i],
           {
@@ -78,8 +75,7 @@ const Testimonials: React.FC = () => {
           label
         );
 
-        // Every card already on stage gets nudged one notch deeper into the
-        // side-stack at the same time.
+        
         for (let j = 0; j < i; j++) {
           const depth = i - j;
           tl.to(
@@ -104,23 +100,20 @@ const Testimonials: React.FC = () => {
   return (
     <section id="testimonials" ref={sectionRef} className="bg-warm-white relative overflow-hidden">
       <div ref={stageRef} className="relative h-screen flex flex-col justify-center px-6 md:px-16 py-16">
-        {/* watermark — infinite x-axis marquee (reuses the marquee-x keyframe from globals.css) */}
+        {/* watermark — infinite marquee */}
         <div className="absolute inset-0 flex items-center pointer-events-none select-none overflow-hidden opacity-10">
           <div className="flex w-max animate-[marquee-x_28s_linear_infinite]">
-            <h2 className="text-[12vw] font-display font-bold text-ink whitespace-nowrap tracking-tighter pr-12">
-              REVIVAL . PILATES . REVIVAL . PILATES
-            </h2>
             <h2 className="text-[12vw] font-display font-bold text-ink whitespace-nowrap tracking-tighter pr-12">
               REVIVAL . PILATES . REVIVAL . PILATES
             </h2>
           </div>
         </div>
 
-        {/* Top Bar Header & Stat */}
+
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 relative z-10">
           <div>
             <p className="label-xs text-olive mb-2">REVIEWS &amp; FEEDBACK</p>
-            <h2 className="text-3xl md:text-5xl font-display text-ink font-semibold">What our community says.</h2>
+            <AnimatedHeading className="text-3xl md:text-5xl font-display text-ink font-semibold">What our community says.</AnimatedHeading>
           </div>
 
           <div className="mt-6 md:mt-0 text-left md:text-right">

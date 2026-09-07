@@ -1,23 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import RevealSection from '@/components/RevealSection';
 import AnimatedHeading from '@/components/AnimatedHeading';
-
-interface FaqItem { q: string; a: string; }
-
-const faqs: FaqItem[] = [
-  { q: 'Should I start with a class or a membership?', a: 'A single class or 5-pack is the easiest way to try Reformer or Mat before committing — most clients switch after their third visit.' },
-  { q: 'How often should I come to see results?', a: 'Most clients notice a shift in posture and core strength within 2–3 sessions per week over 4–6 weeks.' },
-  { q: 'Can I switch from class packages to a membership later?', a: 'Yes — unused classes in a pack can be credited toward your first month of Monthly Unlimited.' },
-  { q: 'Does a membership lock me in long term?', a: 'No. Monthly Unlimited is billed month to month and can be paused or cancelled anytime.' },
-];
+import  {useTransitionReveal} from '@/lib/useTransitionReveal'
+import {faqs} from '@/data/siteData'
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
+  const sectionRef = useRef<HTMLElement>(null);
+  useTransitionReveal(sectionRef);
   return (
-    <section id="faq" className="bg-warm-white py-24 px-6 md:px-16">
+    <section
+      id="faq"
+      ref={sectionRef}
+      data-transition-style="in:circle:hesitate"
+      className="bg-olive py-24 px-6 md:px-16"
+    >
       <RevealSection className="max-w-2xl mx-auto text-center mb-12">
         <AnimatedHeading className="text-4xl md:text-5xl font-display">FAQ</AnimatedHeading>
       </RevealSection>

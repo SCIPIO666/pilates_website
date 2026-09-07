@@ -46,6 +46,50 @@ import outro6 from '../../public/galleryOutro/outro6.jpg'
 import outro7 from '../../public/galleryOutro/outro7.jpg'
 import outro8 from '../../public/galleryOutro/outro8.jpg'
 
+
+interface HeroSlide {
+  id: string;
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  animationClass: string;
+  primaryCta: { text: string; href: string };
+  secondaryCta: { text: string; href: string };
+}
+
+export const heroSlides: HeroSlide[] = [
+  {
+    id: 'slide-1',
+    eyebrow: 'Nairobi · Boutique Pilates Studio',
+    title: 'Strength, restored from the inside out.',
+    subtitle: 'Reformer, Mat, Group & Private sessions tailored to meet you exactly where you are.',
+    image: hero1.src,
+    animationClass: 'kenburns-right',
+    primaryCta: { text: 'Book a Class', href: '#book' },
+    secondaryCta: { text: 'Our Philosophy', href: '#philosophy' },
+  },
+  {
+    id: 'slide-2',
+    eyebrow: 'Precision & Alignment',
+    title: 'Move with intention. Live with balance.',
+    subtitle: 'Building quiet power and postural alignment through expert, unhurried instruction.',
+    image: hero2.src,
+    animationClass: 'kenburns-left',
+    primaryCta: { text: 'Explore Classes', href: '#classes' },
+    secondaryCta: { text: 'Rates & Packs', href: '#pricing' },
+  },
+  {
+    id: 'slide-3',
+    eyebrow: 'Restorative Sanctuary',
+    title: 'A space designed to slow you down.',
+    subtitle: 'Experience considered design, warm light, and personalized movement care in Nairobi.',
+    image: hero3.src,
+    animationClass: 'kenburns-top',
+    primaryCta: { text: 'Meet Instructor', href: '#instructor' },
+    secondaryCta: { text: 'Studio Gallery', href: '#gallery' },
+  },
+];
 export interface ImpactStat {
   id: string;
   number: string;
@@ -353,4 +397,13 @@ export const memberships: PricingTier[] = [
     ],
     ctaText: 'Book Privates',
   },
+];
+
+interface FaqItem { q: string; a: string; }
+
+export const faqs: FaqItem[] = [
+  { q: 'Should I start with a class or a membership?', a: 'A single class or 5-pack is the easiest way to try Reformer or Mat before committing — most clients switch after their third visit.' },
+  { q: 'How often should I come to see results?', a: 'Most clients notice a shift in posture and core strength within 2–3 sessions per week over 4–6 weeks.' },
+  { q: 'Can I switch from class packages to a membership later?', a: 'Yes — unused classes in a pack can be credited toward your first month of Monthly Unlimited.' },
+  { q: 'Does a membership lock me in long term?', a: 'No. Monthly Unlimited is billed month to month and can be paused or cancelled anytime.' },
 ];

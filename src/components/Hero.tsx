@@ -2,55 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import CtaButton from '@/components/CtaButton';
+import {heroSlides} from '@/data/siteData'
+import AnimatedHeading from './AnimatedHeading';
 
-// Import images from the correct path
-import hero1 from '../../public/heroCarousel/hero1.jpg';
-import hero2 from '../../public/heroCarousel/hero2.jpg';
-import hero3 from '../../public/heroCarousel/hero3.jpg';
 
-interface HeroSlide {
-  id: string;
-  eyebrow: string;
-  title: string;
-  subtitle: string;
-  image: string;
-  animationClass: string;
-  primaryCta: { text: string; href: string };
-  secondaryCta: { text: string; href: string };
-}
+// import hero1 from '../../public/heroCarousel/hero1.jpg';
+// import hero2 from '../../public/heroCarousel/hero2.jpg';
+// import hero3 from '../../public/heroCarousel/hero3.jpg';
 
-const heroSlides: HeroSlide[] = [
-  {
-    id: 'slide-1',
-    eyebrow: 'Nairobi · Boutique Pilates Studio',
-    title: 'Strength, restored from the inside out.',
-    subtitle: 'Reformer, Mat, Group & Private sessions tailored to meet you exactly where you are.',
-    image: hero1.src,
-    animationClass: 'kenburns-right',
-    primaryCta: { text: 'Book a Class', href: '#book' },
-    secondaryCta: { text: 'Our Philosophy', href: '#philosophy' },
-  },
-  {
-    id: 'slide-2',
-    eyebrow: 'Precision & Alignment',
-    title: 'Move with intention. Live with balance.',
-    subtitle: 'Building quiet power and postural alignment through expert, unhurried instruction.',
-    image: hero2.src,
-    animationClass: 'kenburns-left',
-    primaryCta: { text: 'Explore Classes', href: '#classes' },
-    secondaryCta: { text: 'Rates & Packs', href: '#pricing' },
-  },
-  {
-    id: 'slide-3',
-    eyebrow: 'Restorative Sanctuary',
-    title: 'A space designed to slow you down.',
-    subtitle: 'Experience considered design, warm light, and personalized movement care in Nairobi.',
-    image: hero3.src,
-    animationClass: 'kenburns-top',
-    primaryCta: { text: 'Meet Instructor', href: '#instructor' },
-    secondaryCta: { text: 'Studio Gallery', href: '#gallery' },
-  },
-];
+
 
 const Hero: React.FC = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -107,16 +67,16 @@ const Hero: React.FC = () => {
         </p>
 
         {/* Dynamic Title with slide animation */}
-        <h1 
+        <AnimatedHeading
           key={`title-${currentIdx}`}
           className="text-warm-white text-4xl md:text-6xl font-display font-bold leading-tight mb-4 max-w-3xl transition-all duration-700 ease-in-out"
-          style={{
-            transform: isTransitioning ? 'translateY(-20px)' : 'translateY(0)',
-            opacity: isTransitioning ? 0 : 1,
-          }}
+          // style={{
+          //   transform: isTransitioning ? 'translateY(-20px)' : 'translateY(0)',
+          //   opacity: isTransitioning ? 0 : 1,
+          // }}
         >
           {currentSlide.title}
-        </h1>
+       </AnimatedHeading>
 
         {/* Subtitle Description */}
         <p 

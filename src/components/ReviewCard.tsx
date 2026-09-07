@@ -33,7 +33,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
       style={style}
     >
       <div>
-        {/* Top Header: Tag & Stars */}
+
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-ink/10">
           <span className="label-xs text-olive tracking-widest">{tag}</span>
           <div className="flex gap-1 text-olive text-sm">
@@ -43,13 +43,12 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
           </div>
         </div>
 
-        {/* Quote Content */}
+
         <blockquote className="text-lg md:text-xl font-display font-medium text-ink leading-relaxed mb-8">
           "{quote}"
         </blockquote>
       </div>
 
-      {/* Author Profile */}
       <div className="flex items-center justify-between pt-4">
         <div className="flex items-center gap-4">
           <div

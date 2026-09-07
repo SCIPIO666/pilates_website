@@ -22,9 +22,6 @@ const Classes: React.FC = () => {
           <p className="label-xs text-olive-light mb-2">CLASSES &amp; PRACTICE</p>
           <h2 className="text-white text-3xl md:text-5xl font-display font-semibold">Four ways to move.</h2>
         </div>
-        <p className="text-warm-white/80 text-sm max-w-sm mt-4 md:mt-0">
-          Hover a row to see the full class breakdown.
-        </p>
       </RevealSection>
 
       {/* classes */}
@@ -69,7 +66,7 @@ const Classes: React.FC = () => {
                           key={i}
                           className="flex items-start gap-2.5 text-xs md:text-sm text-warm-white/70 font-medium"
                         >
-                          {/* <span className="text-olive-light font-bold">✓</span> */}
+
                           <span>{pt}</span>
                         </li>
                       ))}
