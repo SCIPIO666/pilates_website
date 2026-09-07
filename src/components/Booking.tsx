@@ -1,13 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import RevealSection from '@/components/RevealSection';
 import AnimatedHeading from '@/components/AnimatedHeading';
 import CtaButton from '@/components/CtaButton';
+import book from '../../public/book/book.webp';
 
 const Booking: React.FC = () => {
   const [form, setForm] = useState({ name: '', email: '', phone: '', classType: 'Reformer', date: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const imageRef = useRef(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -86,16 +88,13 @@ const Booking: React.FC = () => {
                 First class or first pack — beginners move better and build a routine that lasts.
               </p>
             </div>
-            <ul className="space-y-3">
-              <li className="flex items-center justify-between border-b border-warm-white/20 pb-3">
-                <span className="text-sm">3 Classes</span>
-                <span className="font-display font-bold">KES 6,000</span>
-              </li>
-              <li className="flex items-center justify-between border-b border-warm-white/20 pb-3">
-                <span className="text-sm">1 Week Unlimited</span>
-                <span className="font-display font-bold">KES 4,500</span>
-              </li>
-            </ul>
+            <div ref={imageRef} className="w-full h-[220px] md:h-[280px] overflow-hidden rounded-xl">
+              <img
+                src={book.src}
+                alt="booking"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </RevealSection>
       </div>

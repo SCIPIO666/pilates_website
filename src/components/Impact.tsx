@@ -21,7 +21,7 @@ const Impact: React.FC = () => {
         {/* cards */}
         <div className="lg:col-span-8 grid md:grid-cols-12 gap-6 md:gap-8">
           {impactData.stats.map((stat, idx) => (
-            <RevealSection key={stat.id} className={stat.positionClass} y={30 + idx * 15}>
+            <RevealSection key={stat.id} className={stat.positionClass} y={30 + idx * 15} scale={0.5} delay={idx * 0.15}>
               <div
                 className="rounded-2xl bg-white/50 shadow-token-md border border-border
                   p-10 md:p-12 flex flex-col items-center text-center h-full"

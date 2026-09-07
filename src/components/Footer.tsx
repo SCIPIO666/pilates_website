@@ -1,5 +1,5 @@
 import React from 'react';
-
+import CtaButton from './CtaButton';
 const Footer: React.FC = () => {
   return (
     <footer id="book" className="bg-olive text-warm-white">
@@ -17,6 +17,7 @@ const Footer: React.FC = () => {
           <a href="#" className="hover:text-white transition-colors">Instagram</a>
           <a href="#" className="hover:text-white transition-colors">WhatsApp</a>
           <a href="#" className="hover:text-white transition-colors">Directions</a>
+          <CtaButton href="#book" variant="white" className="mb-16 inline-flex">Book a Class</CtaButton>
         </div>
       </div>
     </footer>

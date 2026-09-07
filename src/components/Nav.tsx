@@ -61,9 +61,7 @@ const Nav: React.FC = () => {
               {link.label}
             </a>
           ))}
-          <a href="#book" className="cta cta-olive">
-            Book a Class
-          </a>
+            <CtaButton href="#book" variant="olive">Book a Class</CtaButton>  
         </div>
 
         <button
@@ -99,7 +97,7 @@ const Nav: React.FC = () => {
               {link.label}
             </a>
           ))}
-          <CtaButton href="#book" variant="olive">Book a Class</CtaButton>
+          <CtaButton href="#book" onClick={() => setMenuOpen(false)} variant="olive" className="mt-4">Book a Class</CtaButton>
         </div>
       )}
       

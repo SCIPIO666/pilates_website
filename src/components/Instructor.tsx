@@ -4,7 +4,7 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import instructorImg from '../../public/instructor/instructor.jpg';
-
+import CtaButton from './CtaButton';
 gsap.registerPlugin(ScrollTrigger);
 
 const Instructor: React.FC = () => {
@@ -56,9 +56,7 @@ const Instructor: React.FC = () => {
           Whether it's a first Reformer session or a long-standing private client, Maya's approach
           stays the same: precise, encouraging, and fully present.
         </p>
-        <a href="#book" className="cta cta-olive">
-          Book with Maya
-        </a>
+        <CtaButton href="#book" variant="olive">Book with Maya</CtaButton>
       </div>
 
       <div

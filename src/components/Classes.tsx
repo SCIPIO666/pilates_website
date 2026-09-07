@@ -5,7 +5,7 @@ import RevealSection from '@/components/RevealSection';
 import { classesData } from '@/data/siteData';
 import { useTransitionReveal } from '@/lib/useTransitionReveal';
 import { useRef } from 'react';
-
+import CtaButton from '@/components/CtaButton';
 const Classes: React.FC = () => {
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -76,11 +76,10 @@ const Classes: React.FC = () => {
                     </ol>
                   </div>
                 </div>
-
-                <a href="#book" className="cta cta-white w-fit">
+                <CtaButton href="#book" variant="white" className="w-fit">
                   <span>Book {cls.title}</span>
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
+                </CtaButton>
               </div>
             </div>
           </RevealSection>
