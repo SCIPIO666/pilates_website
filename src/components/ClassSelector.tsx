@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import type { StaticImageData } from 'next/image'; 
 import classReformer from '../../public/classes/classes (1).webp';
 import classMat from '../../public/classes/classes (2).webp';
 import classGroup from '../../public/classes/classes (3).webp';
@@ -19,30 +20,30 @@ const classOptions: ClassOption[] = [
     key: 'reformer',
     title: 'Reformer',
     description: 'Controlled resistance, precise movement',
-    image: classReformer, 
+    image: classReformer,
   },
   {
     key: 'mat',
     title: 'Mat',
     description: 'Core work, controlled breathing',
-    image: classMat, 
+    image: classMat,
   },
   {
     key: 'group',
     title: 'Group',
     description: 'Stability work, shared energy',
-    image: classGroup, 
+    image: classGroup,
   },
   {
     key: 'private',
     title: 'Private',
     description: 'One-on-one, personalised guidance',
-    image: classPrivate, 
+    image: classPrivate,
   },
 ];
 
 const ClassSelector: React.FC = () => {
- const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [revealed, setRevealed] = useState<number[]>([]);
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
