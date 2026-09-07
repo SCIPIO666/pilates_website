@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import philosophyImg from '../../public/about/aboutusHero.jpg';
+import philosophyImg from '../../public/about/aboutusHero.webp';
 import AnimatedHeading from '@/components/AnimatedHeading';
 import CtaButton from '@/components/CtaButton';
 

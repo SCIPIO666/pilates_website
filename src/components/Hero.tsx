@@ -6,9 +6,9 @@ import {heroSlides} from '@/data/siteData'
 import AnimatedHeading from './AnimatedHeading';
 
 
-// import hero1 from '../../public/heroCarousel/hero1.jpg';
-// import hero2 from '../../public/heroCarousel/hero2.jpg';
-// import hero3 from '../../public/heroCarousel/hero3.jpg';
+// import hero1 from '../../public/heroCarousel/hero1.webp';
+// import hero2 from '../../public/heroCarousel/hero2.webp';
+// import hero3 from '../../public/heroCarousel/hero3.webp';
 
 
 

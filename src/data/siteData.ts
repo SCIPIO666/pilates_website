@@ -1,50 +1,50 @@
-import aboutusHero from '../../public/aboutusHero.jpg';
+import aboutusHero from '../../public/aboutusHero.webp';
 // import bg from '../../public/bg.webp';
-import impact from '../../public/impact/impact (1).jpg'
+import impact from '../../public/impact/impact (1).webp'
 
 
 // hero
-import hero1 from '../../public/heroCarousel/hero1.jpg'
-import hero2 from '../../public/heroCarousel/hero2.jpg'
-import hero3 from '../../public/heroCarousel/hero3.jpg'
+import hero1 from '../../public/heroCarousel/hero1.webp'
+import hero2 from '../../public/heroCarousel/hero2.webp'
+import hero3 from '../../public/heroCarousel/hero3.webp'
 
 // classes
-import class1 from '../../public/classes/classes (1).jpg'
-import class2 from '../../public/classes/classes (2).jpg'
-import class3 from '../../public/classes/classes (3).jpg'
-import class4 from '../../public/classes/classes (4).jpg'
-import class5 from '../../public/classes/classes (5).jpg'
-import class6 from '../../public/classes/classes (6).jpg'
-import class7 from '../../public/classes/classes (7).jpg'
+import class1 from '../../public/classes/classes (1).webp'
+import class2 from '../../public/classes/classes (2).webp'
+import class3 from '../../public/classes/classes (3).webp'
+import class4 from '../../public/classes/classes (4).webp'
+import class5 from '../../public/classes/classes (5).webp'
+import class6 from '../../public/classes/classes (6).webp'
+import class7 from '../../public/classes/classes (7).webp'
 
 
 // impact
 
 
 // gallery
-import gallery1 from '../../public/gallery/gallery.jpg'
-import gallery2 from '../../public/gallery/gallery2.jpg'
-import gallery3 from '../../public/gallery/gallery3.jpg'
-import gallery4 from '../../public/gallery/gallery4.jpg'
+import gallery1 from '../../public/gallery/gallery.webp'
+import gallery2 from '../../public/gallery/gallery2.webp'
+import gallery3 from '../../public/gallery/gallery3.webp'
+import gallery4 from '../../public/gallery/gallery4.webp'
 
 // reviews
-import avatar1 from '../../public/avatars/avatar (1).jpg'
-import avatar2 from '../../public/avatars/avatar (2).jpg'
-import avatar3 from '../../public/avatars/avatar (3).jpg'
-import avatar4 from '../../public/avatars/avatar (4).jpg'
-// import avatar5 from '../../public/avatars/avatar (5).jpg'
-// import avatar6 from '../../public/avatars/avatar (6).jpg'
+import avatar1 from '../../public/avatars/avatar (1).webp'
+import avatar2 from '../../public/avatars/avatar (2).webp'
+import avatar3 from '../../public/avatars/avatar (3).webp'
+import avatar4 from '../../public/avatars/avatar (4).webp'
+// import avatar5 from '../../public/avatars/avatar (5).webp'
+// import avatar6 from '../../public/avatars/avatar (6).webp'
 
 
 // gallery outro
-import outro1 from '../../public/galleryOutro/outro.jpg'
-import outro2 from '../../public/galleryOutro/outro2.jpg'
-import outro3 from '../../public/galleryOutro/outro3.jpg'
-import outro4 from '../../public/galleryOutro/outro4.jpg'
-import outro5 from '../../public/galleryOutro/outro5.jpg'
-import outro6 from '../../public/galleryOutro/outro6.jpg'
-import outro7 from '../../public/galleryOutro/outro7.jpg'
-import outro8 from '../../public/galleryOutro/outro8.jpg'
+import outro1 from '../../public/galleryOutro/outro.webp'
+import outro2 from '../../public/galleryOutro/outro2.webp'
+import outro3 from '../../public/galleryOutro/outro3.webp'
+import outro4 from '../../public/galleryOutro/outro4.webp'
+import outro5 from '../../public/galleryOutro/outro5.webp'
+import outro6 from '../../public/galleryOutro/outro6.webp'
+import outro7 from '../../public/galleryOutro/outro7.webp'
+import outro8 from '../../public/galleryOutro/outro8.webp'
 
 
 interface HeroSlide {

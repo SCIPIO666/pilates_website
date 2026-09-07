@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import instructorImg from '../../public/instructor/instructor.jpg';
+import instructorImg from '../../public/instructor/instructor.webp';
 import CtaButton from './CtaButton';
 gsap.registerPlugin(ScrollTrigger);
 
