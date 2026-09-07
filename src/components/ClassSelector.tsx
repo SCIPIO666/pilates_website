@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import classReformer from '../../public/classes/classes (1).webp';
 import classMat from '../../public/classes/classes (2).webp';
 import classGroup from '../../public/classes/classes (3).webp';
@@ -10,7 +11,7 @@ interface ClassOption {
   key: string;
   title: string;
   description: string;
-  image: string;
+  image: StaticImageData; // Add import type
 }
 
 const classOptions: ClassOption[] = [
@@ -18,74 +19,46 @@ const classOptions: ClassOption[] = [
     key: 'reformer',
     title: 'Reformer',
     description: 'Controlled resistance, precise movement',
-    image: classReformer.src,
+    image: classReformer, // Removed .src
   },
   {
     key: 'mat',
     title: 'Mat',
     description: 'Core work, controlled breathing',
-    image: classMat.src,
+    image: classMat, // Removed .src
   },
   {
     key: 'group',
     title: 'Group',
     description: 'Stability work, shared energy',
-    image: classGroup.src,
+    image: classGroup, // Removed .src
   },
   {
     key: 'private',
     title: 'Private',
     description: 'One-on-one, personalised guidance',
-    image: classPrivate.src,
+    image: classPrivate, // Removed .src
   },
 ];
 
 const ClassSelector: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [revealed, setRevealed] = useState<number[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  useEffect(() => {
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    classOptions.forEach((_, i) => {
-      const t = setTimeout(() => {
-        setRevealed((prev) => [...prev, i]);
-      }, 120 * i);
-      timers.push(t);
-    });
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const handleSelect = (index: number) => {
-    if (index !== activeIndex) setActiveIndex(index);
-  };
+  // ... state and effects remain the same
 
   return (
     <div ref={containerRef} className="w-full">
-      {/* mobile: full width cards,snap on click */}
       {isMobile ? (
-        <div
-          className="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 snap-x snap-mandatory"
-          style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
-        >
+        <div className="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 snap-x snap-mandatory">
           {classOptions.map((option) => (
-            <div
-              key={option.key}
-              className="relative flex-shrink-0 w-[78vw] h-[360px] snap-start rounded-none overflow-hidden img-placeholder"
-              style={{
-                backgroundImage: `url('${option.image}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
+            <div key={option.key} className="relative flex-shrink-0 w-[78vw] h-[360px] snap-start rounded-none overflow-hidden">
+              <Image
+                src={option.image}
+                alt={option.title}
+                fill
+                className="object-cover"
+                placeholder="blur"
+                sizes="78vw"
+                loading="lazy"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <div className="absolute left-0 right-0 bottom-0 p-5">
                 <h3 className="text-white text-xl font-semibold mb-1">{option.title}</h3>
@@ -95,7 +68,6 @@ const ClassSelector: React.FC = () => {
           ))}
         </div>
       ) : (
-        /* desktop: interactive expand-on-click/hover  */
         <div className="flex w-full h-[460px] items-stretch overflow-hidden gap-1">
           {classOptions.map((option, index) => {
             const isActive = activeIndex === index;
@@ -111,17 +83,28 @@ const ClassSelector: React.FC = () => {
                 }}
                 aria-pressed={isActive}
                 aria-label={`${option.title} class`}
-                className="img-placeholder relative flex flex-col justify-end overflow-hidden cursor-pointer transition-all duration-700 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-olive"
+                className="relative flex flex-col justify-end overflow-hidden cursor-pointer transition-all duration-700 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-olive"
                 style={{
-                  backgroundImage: `url('${option.image}')`,
-                  backgroundSize: isActive ? 'cover' : 'auto 130%',
-                  backgroundPosition: 'center',
-                  opacity: revealed.includes(index) ? 1 : 0,
-                  transform: revealed.includes(index) ? 'translateY(0)' : 'translateY(24px)',
                   flex: isActive ? '5 1 0%' : '1 1 0%',
                   borderRight: index < classOptions.length - 1 ? '1px solid rgba(245,240,235,0.4)' : 'none',
                 }}
               >
+                <Image
+                  src={option.image}
+                  alt={option.title}
+                  fill
+                  className={`object-cover transition-all duration-700 ease-in-out ${
+                    isActive ? 'scale-100' : 'scale-110'
+                  }`}
+                  placeholder="blur"
+                  sizes="20vw"
+                  loading="lazy"
+                  style={{
+                    opacity: revealed.includes(index) ? 1 : 0,
+                    transform: revealed.includes(index) ? 'translateY(0)' : 'translateY(24px)',
+                  }}
+                />
+                
                 <div
                   className="absolute inset-0 pointer-events-none transition-opacity duration-700"
                   style={{

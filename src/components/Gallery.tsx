@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import RevealSection from '@/components/RevealSection';
 import { galleryData } from '@/data/siteData';
 
 type BlockSize = 'sm' | 'wide' | 'tall' | 'lg';
 
-// mobile first
 const sizeClasses: Record<BlockSize, string> = {
   sm: 'col-span-2 row-span-3 md:col-span-2 md:row-span-3 lg:col-span-3 lg:row-span-3',
   wide: 'col-span-2 row-span-3 md:col-span-4 md:row-span-3 lg:col-span-5 lg:row-span-3',
@@ -14,13 +14,11 @@ const sizeClasses: Record<BlockSize, string> = {
   lg: 'col-span-2 row-span-5 md:col-span-4 md:row-span-5 lg:col-span-5 lg:row-span-6',
 };
 
-// cycling pattern
 const sizePattern: BlockSize[] = ['sm', 'wide', 'tall', 'sm', 'wide', 'sm', 'tall', 'lg', 'wide', 'sm', 'sm', 'tall'];
 
 const Gallery: React.FC = () => {
   return (
     <section id="gallery" className="bg-bone py-24 px-6 md:px-16 overflow-hidden">
-
       <RevealSection className="max-w-xl mb-16">
         <p className="label-xs text-olive mb-2">STUDIO</p>
         <h2 className="text-3xl md:text-5xl font-display font-semibold text-ink">
@@ -28,11 +26,9 @@ const Gallery: React.FC = () => {
         </h2>
       </RevealSection>
 
-      {/* dense grid */}
       <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-11 grid-flow-row-dense auto-rows-[56px] gap-4 md:gap-6">
         {galleryData.map((item, idx) => {
           const size = sizePattern[idx % sizePattern.length];
-
           return (
             <RevealSection
               key={item.id}
@@ -43,13 +39,14 @@ const Gallery: React.FC = () => {
               delay={(idx % 6) * 0.08}
             >
               <div className="group relative w-full h-full overflow-hidden rounded-2xl border border-ink/10 shadow-md">
-                <div
-                  className="absolute inset-0  transition-transform duration-700 ease-out group-hover:scale-105"
-                  style={{
-                    backgroundImage: `url('${item.image}')`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  placeholder="blur"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 15vw"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                   <div>

@@ -1,62 +1,110 @@
-import aboutusHero from '../../public/aboutusHero.webp';
-// import bg from '../../public/bg.webp';
-import impact from '../../public/impact/impact (1).webp'
+import type { StaticImageData } from 'next/image';
 
+
+import aboutusHero from '../../public/aboutusHero.webp';
+import impact from '../../public/impact/impact (1).webp';
 
 // hero
-import hero1 from '../../public/heroCarousel/hero1.webp'
-import hero2 from '../../public/heroCarousel/hero2.webp'
-import hero3 from '../../public/heroCarousel/hero3.webp'
+import hero1 from '../../public/heroCarousel/hero1.webp';
+import hero2 from '../../public/heroCarousel/hero2.webp';
+import hero3 from '../../public/heroCarousel/hero3.webp';
 
 // classes
-import class1 from '../../public/classes/classes (1).webp'
-import class2 from '../../public/classes/classes (2).webp'
-import class3 from '../../public/classes/classes (3).webp'
-import class4 from '../../public/classes/classes (4).webp'
-import class5 from '../../public/classes/classes (5).webp'
-import class6 from '../../public/classes/classes (6).webp'
-import class7 from '../../public/classes/classes (7).webp'
-
-
-// impact
-
+import class1 from '../../public/classes/classes (1).webp';
+import class2 from '../../public/classes/classes (2).webp';
+import class3 from '../../public/classes/classes (3).webp';
+import class4 from '../../public/classes/classes (4).webp';
+import class5 from '../../public/classes/classes (5).webp';
+import class6 from '../../public/classes/classes (6).webp';
+import class7 from '../../public/classes/classes (7).webp';
 
 // gallery
-import gallery1 from '../../public/gallery/gallery.webp'
-import gallery2 from '../../public/gallery/gallery2.webp'
-import gallery3 from '../../public/gallery/gallery3.webp'
-import gallery4 from '../../public/gallery/gallery4.webp'
+import gallery1 from '../../public/gallery/gallery.webp';
+import gallery2 from '../../public/gallery/gallery2.webp';
+import gallery3 from '../../public/gallery/gallery3.webp';
+import gallery4 from '../../public/gallery/gallery4.webp';
 
 // reviews
-import avatar1 from '../../public/avatars/avatar (1).webp'
-import avatar2 from '../../public/avatars/avatar (2).webp'
-import avatar3 from '../../public/avatars/avatar (3).webp'
-import avatar4 from '../../public/avatars/avatar (4).webp'
-// import avatar5 from '../../public/avatars/avatar (5).webp'
-// import avatar6 from '../../public/avatars/avatar (6).webp'
-
+import avatar1 from '../../public/avatars/avatar (1).webp';
+import avatar2 from '../../public/avatars/avatar (2).webp';
+import avatar3 from '../../public/avatars/avatar (3).webp';
+import avatar4 from '../../public/avatars/avatar (4).webp';
 
 // gallery outro
-import outro1 from '../../public/galleryOutro/outro.webp'
-import outro2 from '../../public/galleryOutro/outro2.webp'
-import outro3 from '../../public/galleryOutro/outro3.webp'
-import outro4 from '../../public/galleryOutro/outro4.webp'
-import outro5 from '../../public/galleryOutro/outro5.webp'
-import outro6 from '../../public/galleryOutro/outro6.webp'
-import outro7 from '../../public/galleryOutro/outro7.webp'
-import outro8 from '../../public/galleryOutro/outro8.webp'
+import outro1 from '../../public/galleryOutro/outro.webp';
+import outro2 from '../../public/galleryOutro/outro2.webp';
+import outro3 from '../../public/galleryOutro/outro3.webp';
+import outro4 from '../../public/galleryOutro/outro4.webp';
+import outro5 from '../../public/galleryOutro/outro5.webp';
+import outro6 from '../../public/galleryOutro/outro6.webp';
+import outro7 from '../../public/galleryOutro/outro7.webp';
+import outro8 from '../../public/galleryOutro/outro8.webp';
 
+// INTERFACES 
 
-interface HeroSlide {
+export interface HeroSlide {
   id: string;
   eyebrow: string;
   title: string;
   subtitle: string;
-  image: string;
+  image: StaticImageData;
   animationClass: string;
   primaryCta: { text: string; href: string };
   secondaryCta: { text: string; href: string };
 }
+
+export interface ImpactStat {
+  id: string;
+  number: string;
+  label: string;
+  description: string;
+  positionClass: string;
+}
+
+export interface ClassItem {
+  id: string;
+  stepNumber: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: StaticImageData;
+  bulletPoints: string[];
+}
+
+export interface ReviewItem {
+  id: string;
+  name: string;
+  role: string;
+  avatar: StaticImageData;
+  quote: string;
+  rating: number;
+}
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  subtitle?: string;
+  image: StaticImageData;
+  aspect: string;
+  offsetClass?: string;
+}
+
+export interface PricingTier {
+  key: string;
+  name: string;
+  price: string;
+  subtitle: string;
+  features: string[];
+  popular?: boolean;
+  ctaText: string;
+}
+
+export interface FaqItem { 
+  q: string; 
+  a: string; 
+}
+
+//  DATA 
 
 export const heroSlides: HeroSlide[] = [
   {
@@ -64,7 +112,7 @@ export const heroSlides: HeroSlide[] = [
     eyebrow: 'Nairobi · Boutique Pilates Studio',
     title: 'Strength, restored from the inside out.',
     subtitle: 'Reformer, Mat, Group & Private sessions tailored to meet you exactly where you are.',
-    image: hero1.src,
+    image: hero1, 
     animationClass: 'kenburns-right',
     primaryCta: { text: 'Book a Class', href: '#book' },
     secondaryCta: { text: 'Our Philosophy', href: '#philosophy' },
@@ -74,7 +122,7 @@ export const heroSlides: HeroSlide[] = [
     eyebrow: 'Precision & Alignment',
     title: 'Move with intention. Live with balance.',
     subtitle: 'Building quiet power and postural alignment through expert, unhurried instruction.',
-    image: hero2.src,
+    image: hero2, 
     animationClass: 'kenburns-left',
     primaryCta: { text: 'Explore Classes', href: '#classes' },
     secondaryCta: { text: 'Rates & Packs', href: '#pricing' },
@@ -84,24 +132,17 @@ export const heroSlides: HeroSlide[] = [
     eyebrow: 'Restorative Sanctuary',
     title: 'A space designed to slow you down.',
     subtitle: 'Experience considered design, warm light, and personalized movement care in Nairobi.',
-    image: hero3.src,
+    image: hero3, 
     animationClass: 'kenburns-top',
     primaryCta: { text: 'Meet Instructor', href: '#instructor' },
     secondaryCta: { text: 'Studio Gallery', href: '#gallery' },
   },
 ];
-export interface ImpactStat {
-  id: string;
-  number: string;
-  label: string;
-  description: string;
-  positionClass: string;
-}
 
 export const impactData = {
   eyebrow: 'STUDIO IMPACT & EXPERIENCE',
   title: 'Dedicated to movement mastery.',
-  image: impact.src,
+  image: impact, 
   stats: [
     {
       id: 'stat-1',
@@ -114,7 +155,7 @@ export const impactData = {
       id: 'stat-2',
       number: '500+ hours',
       label: 'Supervised Teaching',
-      description: 'Of hands-on instruction in our Nairobi studio, guiding real clients under Maya’s mentorship.',
+      description: 'Of hands-on instruction in our Nairobi studio, guiding real clients under Maya\'s mentorship.',
       positionClass: 'md:col-span-6 md:mt-24',
     },
     {
@@ -127,34 +168,6 @@ export const impactData = {
   ],
 };
 
-export interface ClassItem {
-  id: string;
-  stepNumber: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  image: string;
-  bulletPoints: string[];
-}
-
-export interface ReviewItem {
-  id: string;
-  name: string;
-  role: string;
-  avatar: string;
-  quote: string;
-  rating: number;
-}
-
-export interface GalleryItem {
-  id: string;
-  title: string;
-  subtitle?: string;
-  image: string;
-  aspect: string;
-  offsetClass?: string;
-}
-
 export const classesData: ClassItem[] = [
   {
     id: 'reformer',
@@ -163,7 +176,7 @@ export const classesData: ClassItem[] = [
     subtitle: 'Spring Resistance & Precise Core Alignment',
     description:
       'Controlled movement using carriage springs to restore posture, lengthen muscles, and build deep core stability under expert guidance.',
-    image: class1.src,
+    image: class1, 
     bulletPoints: [
       'Spring resistance customization',
       'Posture restoration & spinal alignment',
@@ -177,7 +190,7 @@ export const classesData: ClassItem[] = [
     subtitle: 'Core Engagement & Breathwork',
     description:
       'Ground-based practice strengthening the powerhouse through deliberate breathwork, fluid transitions, and bodyweight control.',
-    image: class2.src,
+    image: class2, 
     bulletPoints: [
       'Deep abdominal & back strengthening',
       'Fluid movement & breath synchronisation',
@@ -191,7 +204,7 @@ export const classesData: ClassItem[] = [
     subtitle: 'Intimate Class (Max 6 Reformists)',
     description:
       'Shared energy in a boutique studio setting with hands-on instructor cues ensuring proper form for every participant.',
-    image: class3.src,
+    image: class3, 
     bulletPoints: [
       'Boutique environment (max 6 per class)',
       'Hands-on posture corrections',
@@ -205,7 +218,7 @@ export const classesData: ClassItem[] = [
     subtitle: 'Tailored Solo Instruction with Maya',
     description:
       'One-on-one movement sessions customized for injury recovery, hypermobility care, or personalized progression goals.',
-    image: class4.src,
+    image: class4, // Removed .src
     bulletPoints: [
       'Personalised body assessment',
       'Dedicated instructor attention',
@@ -219,7 +232,7 @@ export const reviewsData: ReviewItem[] = [
     id: 'fathiya',
     name: 'Fathiya Jama',
     role: 'Nairobi Client',
-    avatar: avatar1.src,
+    avatar: avatar1, 
     quote:
       "It was my first time trying Pilates, and I had such a lovely experience! The trainer was very helpful, patient, and made me feel comfortable throughout.",
     rating: 5,
@@ -228,7 +241,7 @@ export const reviewsData: ReviewItem[] = [
     id: 'morganne',
     name: 'Morganne Jumper',
     role: 'Regular Member',
-    avatar: avatar2.src,
+    avatar: avatar2, 
     quote:
       "I love Revival Pilates! It is so beautiful, serene, and restorative. Maya's classes have completely transformed how my body feels.",
     rating: 5,
@@ -237,7 +250,7 @@ export const reviewsData: ReviewItem[] = [
     id: 'tanisha',
     name: 'Tanisha Robinson',
     role: 'Reformer Client',
-    avatar: avatar3.src,
+    avatar: avatar3, 
     quote:
       'Revival feels like a spa retreat the moment you enter. From the decor & lighting to the welcoming energy of the staff, it is my favorite space in Nairobi.',
     rating: 5,
@@ -246,7 +259,7 @@ export const reviewsData: ReviewItem[] = [
     id: 'karyn',
     name: 'Karyn Rule',
     role: 'Private Client',
-    avatar: avatar4.src,
+    avatar: avatar4, 
     quote:
       'Pleasant ambience and staff. Intuitive trainer and good variety in sessions ensuring a full body workout that is both challenging and restorative.',
     rating: 5,
@@ -258,14 +271,14 @@ export const galleryData: GalleryItem[] = [
     id: 'g1',
     title: 'Full-Body Extension',
     subtitle: 'Reformer Flow',
-    image: gallery1.src,
+    image: gallery1, 
     aspect: 'aspect-[4/3]',
   },
   {
     id: 'g2',
     title: 'Core-Led Control',
     subtitle: 'Precision Movement',
-    image: gallery2.src,
+    image: gallery2, 
     aspect: 'aspect-[3/4]',
     offsetClass: 'md:translate-y-12',
   },
@@ -273,14 +286,14 @@ export const galleryData: GalleryItem[] = [
     id: 'g3',
     title: 'Balanced Stretch',
     subtitle: 'Mat Practice',
-    image: gallery3.src,
+    image: gallery3, 
     aspect: 'aspect-[16/9]',
   },
   {
     id: 'g4',
     title: 'Strength in Stillness',
     subtitle: 'Breath & Form',
-    image: gallery4.src,
+    image: gallery4, 
     aspect: 'aspect-[4/3]',
     offsetClass: 'md:-translate-y-8',
   },
@@ -288,7 +301,7 @@ export const galleryData: GalleryItem[] = [
     id: 'g5',
     title: 'Rooted Alignment',
     subtitle: 'Guided Sequence',
-    image: class5.src,
+    image: class5, 
     aspect: 'aspect-[4/3]',
     offsetClass: 'md:-translate-y-8',
   },
@@ -296,7 +309,7 @@ export const galleryData: GalleryItem[] = [
     id: 'g6',
     title: 'Controlled Flow',
     subtitle: 'Studio Session',
-    image: class6.src,
+    image: class6, 
     aspect: 'aspect-[4/3]',
     offsetClass: 'md:-translate-y-8',
   },
@@ -304,32 +317,22 @@ export const galleryData: GalleryItem[] = [
     id: 'g7',
     title: 'Mindful Movement',
     subtitle: 'Full-Body Focus',
-    image: class7.src,
+    image: class7, 
     aspect: 'aspect-[4/3]',
     offsetClass: 'md:-translate-y-8',
   },
 ];
 
 export const galleryStripData = [
-  { id: 's1', title: 'Reformer Flow', image: outro1.src },
-  { id: 's2', title: 'Studio Practice', image: outro2.src },
-  { id: 's3', title: 'Mindful Pose', image: outro3.src },
-  { id: 's4', title: 'Core Alignment', image: outro4.src },
-  { id: 's5', title: 'Restorative Form', image: outro5.src },
-  { id: 's6', title: 'Restorative Form', image: outro6.src },
-  { id: 's7', title: 'Restorative Form', image: outro7.src },
-  { id: 's8', title: 'Restorative Form', image: outro8.src },
+  { id: 's1', title: 'Reformer Flow', image: outro1 }, 
+  { id: 's2', title: 'Studio Practice', image: outro2 }, 
+  { id: 's3', title: 'Mindful Pose', image: outro3 }, 
+  { id: 's4', title: 'Core Alignment', image: outro4 }, 
+  { id: 's5', title: 'Restorative Form', image: outro5 }, 
+  { id: 's6', title: 'Restorative Form', image: outro6 }, 
+  { id: 's7', title: 'Restorative Form', image: outro7 }, 
+  { id: 's8', title: 'Restorative Form', image: outro8 }, 
 ];
-
-interface PricingTier {
-  key: string;
-  name: string;
-  price: string;
-  subtitle: string;
-  features: string[];
-  popular?: boolean;
-  ctaText: string;
-}
 
 export const classPacks: PricingTier[] = [
   {
@@ -399,11 +402,21 @@ export const memberships: PricingTier[] = [
   },
 ];
 
-interface FaqItem { q: string; a: string; }
-
 export const faqs: FaqItem[] = [
-  { q: 'Should I start with a class or a membership?', a: 'A single class or 5-pack is the easiest way to try Reformer or Mat before committing — most clients switch after their third visit.' },
-  { q: 'How often should I come to see results?', a: 'Most clients notice a shift in posture and core strength within 2–3 sessions per week over 4–6 weeks.' },
-  { q: 'Can I switch from class packages to a membership later?', a: 'Yes — unused classes in a pack can be credited toward your first month of Monthly Unlimited.' },
-  { q: 'Does a membership lock me in long term?', a: 'No. Monthly Unlimited is billed month to month and can be paused or cancelled anytime.' },
+  { 
+    q: 'Should I start with a class or a membership?', 
+    a: 'A single class or 5-pack is the easiest way to try Reformer or Mat before committing — most clients switch after their third visit.' 
+  },
+  { 
+    q: 'How often should I come to see results?', 
+    a: 'Most clients notice a shift in posture and core strength within 2–3 sessions per week over 4–6 weeks.' 
+  },
+  { 
+    q: 'Can I switch from class packages to a membership later?', 
+    a: 'Yes — unused classes in a pack can be credited toward your first month of Monthly Unlimited.' 
+  },
+  { 
+    q: 'Does a membership lock me in long term?', 
+    a: 'No. Monthly Unlimited is billed month to month and can be paused or cancelled anytime.' 
+  },
 ];

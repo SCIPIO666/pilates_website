@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import philosophyImg from '../../public/about/aboutusHero.webp';
@@ -29,11 +30,17 @@ const Philosophy: React.FC = () => {
 
   return (
     <section ref={sectionRef} id="philosophy" className="grid md:grid-cols-2 gap-10 md:gap-16 items-center bg-warm-white">
-      <div
-        ref={imageRef}
-        className="img-placeholder w-full h-[340px] md:h-[480px]"
-        style={{ backgroundImage: `url('${philosophyImg.src}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-      />
+      <div ref={imageRef} className="relative w-full h-[340px] md:h-[480px] overflow-hidden">
+        <Image
+          src={philosophyImg}
+          alt="Our philosophy"
+          fill
+          className="object-cover"
+          placeholder="blur"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority={false}
+        />
+      </div>
       <div ref={textRef} className="max-w-md">
         <p className="label-xs mb-4">Our Philosophy</p>
         <AnimatedHeading className="mb-6">Movement that meets you where you are.</AnimatedHeading>

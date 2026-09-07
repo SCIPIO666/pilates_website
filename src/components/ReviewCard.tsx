@@ -1,11 +1,13 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
+import type { StaticImageData } from 'next/image';
 
 export interface ReviewCardProps {
   name: string;
   role?: string;
-  avatar: string;
+  avatar: string | StaticImageData;
   quote: string;
   rating?: number;
   tag?: string;
@@ -33,7 +35,6 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
       style={style}
     >
       <div>
-
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-ink/10">
           <span className="label-xs text-olive tracking-widest">{tag}</span>
           <div className="flex gap-1 text-olive text-sm">
@@ -43,7 +44,6 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
           </div>
         </div>
 
-
         <blockquote className="text-lg md:text-xl font-display font-medium text-ink leading-relaxed mb-8">
           "{quote}"
         </blockquote>
@@ -51,14 +51,17 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
 
       <div className="flex items-center justify-between pt-4">
         <div className="flex items-center gap-4">
-          <div
-            className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-olive/30 bg-placeholder flex-shrink-0"
-            style={{
-              backgroundImage: `url('${avatar}')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
+          <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-olive/30 flex-shrink-0">
+            <Image
+              src={avatar}
+              alt={name}
+              fill
+              className="object-cover"
+              placeholder="blur"
+              sizes="56px"
+              loading="lazy"
+            />
+          </div>
           <div>
             <h4 className="font-semibold text-ink text-base md:text-lg">{name}</h4>
             <p className="text-xs text-ink/60">{role}</p>

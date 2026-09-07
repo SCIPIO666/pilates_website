@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { reviewsData } from '@/data/siteData';
 import AnimatedHeading from './AnimatedHeading';
+
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -25,7 +27,6 @@ const Testimonials: React.FC = () => {
     if (!stage || cards.length === 0) return;
 
     const ctx = gsap.context(() => {
-  
       cards.forEach((card, i) => {
         gsap.set(card, {
           rotationY: 20,
@@ -57,39 +58,28 @@ const Testimonials: React.FC = () => {
 
       for (let i = 1; i < cards.length; i++) {
         const label = `card-${i}`;
+        tl.to(cards[i], {
+          rotationY: 0,
+          rotationX: 0,
+          x: 0,
+          y: 0,
+          skewX: 0,
+          skewY: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out',
+        }, label);
 
-        // Card entry
-        tl.to(
-          cards[i],
-          {
-            rotationY: 0,
-            rotationX: 0,
-            x: 0,
-            y: 0,
-            skewX: 0,
-            skewY: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power2.out',
-          },
-          label
-        );
-
-        
         for (let j = 0; j < i; j++) {
           const depth = i - j;
-          tl.to(
-            cards[j],
-            {
-              xPercent: depth * 16,
-              yPercent: depth * 8,
-              scale: 1 - depth * 0.05,
-              rotation: -depth * 5,
-              duration: 1,
-              ease: 'power2.inOut',
-            },
-            label
-          );
+          tl.to(cards[j], {
+            xPercent: depth * 16,
+            yPercent: depth * 8,
+            scale: 1 - depth * 0.05,
+            rotation: -depth * 5,
+            duration: 1,
+            ease: 'power2.inOut',
+          }, label);
         }
       }
     }, sectionRef);
@@ -100,7 +90,6 @@ const Testimonials: React.FC = () => {
   return (
     <section id="testimonials" ref={sectionRef} className="bg-warm-white relative overflow-hidden">
       <div ref={stageRef} className="relative h-screen flex flex-col justify-center px-6 md:px-16 py-16">
-        {/* watermark — infinite marquee */}
         <div className="absolute inset-0 flex items-center pointer-events-none select-none overflow-hidden opacity-10">
           <div className="flex w-max animate-[marquee-x_28s_linear_infinite]">
             <h2 className="text-[12vw] font-display font-bold text-ink whitespace-nowrap tracking-tighter pr-12">
@@ -108,7 +97,6 @@ const Testimonials: React.FC = () => {
             </h2>
           </div>
         </div>
-
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 relative z-10">
           <div>
@@ -122,14 +110,9 @@ const Testimonials: React.FC = () => {
           </div>
         </div>
 
-        {/* card stack */}
-        <div
-          className="relative w-full max-w-lg mx-auto h-[440px] md:h-[400px]"
-          style={{ perspective: 1200 }}
-        >
+        <div className="relative w-full max-w-lg mx-auto h-[440px] md:h-[400px]" style={{ perspective: 1200 }}>
           {reviewsData.map((rev, idx) => {
             const theme = cardThemes[idx % cardThemes.length];
-
             return (
               <div
                 key={rev.id}
@@ -151,14 +134,17 @@ const Testimonials: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-4 mb-6">
-                  <div
-                    className="w-14 h-14 rounded-xl overflow-hidden border-2 border-warm-white/20 img-placeholder flex-shrink-0"
-                    style={{
-                      backgroundImage: `url('${rev.avatar}')`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                    }}
-                  />
+                  <div className="relative w-14 h-14 rounded-xl overflow-hidden border-2 border-warm-white/20 flex-shrink-0">
+                    <Image
+                      src={rev.avatar}
+                      alt={rev.name}
+                      fill
+                      className="object-cover"
+                      placeholder="blur"
+                      sizes="56px"
+                      loading="lazy"
+                    />
+                  </div>
                   <div>
                     <h4 className={`font-semibold text-lg ${theme.text}`}>{rev.name}</h4>
                     <p className={`text-xs ${theme.sub}`}>{rev.role}</p>
