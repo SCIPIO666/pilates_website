@@ -276,3 +276,81 @@ export const galleryStripData = [
   { id: 's7', title: 'Restorative Form', image: outro7.src },
   { id: 's8', title: 'Restorative Form', image: outro8.src },
 ];
+
+interface PricingTier {
+  key: string;
+  name: string;
+  price: string;
+  subtitle: string;
+  features: string[];
+  popular?: boolean;
+  ctaText: string;
+}
+
+export const classPacks: PricingTier[] = [
+  {
+    key: 'drop-in',
+    name: 'Single Class',
+    price: 'KES 3,500',
+    subtitle: 'Valid for 14 days',
+    features: ['Access to Reformer or Mat class', 'Complimentary grip socks on first visit', 'Locker & amenities access'],
+    ctaText: 'Book Single Class',
+  },
+  {
+    key: 'pack-5',
+    name: '5-Class Pack',
+    price: 'KES 15,000',
+    subtitle: 'Valid for 2 months',
+    popular: true,
+    features: [
+      'KES 3,000 per class',
+      'Priority booking window',
+      'Mat & Reformer flexibility',
+      'Transferable up to 1 guest session',
+    ],
+    ctaText: 'Buy 5-Pass',
+  },
+  {
+    key: 'pack-10',
+    name: '10-Class Pack',
+    price: 'KES 28,000',
+    subtitle: 'Valid for 4 months',
+    features: [
+      'KES 2,800 per class',
+      '14-day advance booking',
+      'Full access to all group sessions',
+      '1 complimentary Private consultation',
+    ],
+    ctaText: 'Buy 10-Pass',
+  },
+];
+
+export const memberships: PricingTier[] = [
+  {
+    key: 'monthly-unlimited',
+    name: 'Monthly Unlimited',
+    price: 'KES 35,000',
+    subtitle: 'Billed monthly · Cancel anytime',
+    popular: true,
+    features: [
+      'Unlimited Mat & Reformer classes',
+      'Dedicated locker reservation',
+      '10% off private sessions & merch',
+      'Guest passes (2 per month)',
+    ],
+    ctaText: 'Join Membership',
+  },
+  {
+    key: 'private-pack',
+    name: 'Private 1-on-1 (5 Sessions)',
+    price: 'KES 40,000',
+    subtitle: 'Valid for 3 months',
+    features: [
+      'Personalised Movement Assessment',
+      'Dedicated 60-min solo instructor time',
+      'Customised progression plan',
+      'Flexible scheduling with Maya',
+    ],
+    ctaText: 'Book Privates',
+  },
+];

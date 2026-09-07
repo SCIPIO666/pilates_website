@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-
+import CtaButton from './CtaButton';
 const navLinks = [
   { label: 'Philosophy', href: '#philosophy' },
   { label: 'Classes', href: '#classes' },
@@ -47,7 +47,7 @@ const Nav: React.FC = () => {
       }}
     >
       <div className="flex items-center justify-between px-6 md:px-12 py-5">
-        <a href="#top" className="font-display text-lg font-semibold tracking-tight text-ink">
+        <a href="#top" className="font-h text-lg font-semibold tracking-tight text-ink">
           Revival Pilates
         </a>
 
@@ -99,11 +99,10 @@ const Nav: React.FC = () => {
               {link.label}
             </a>
           ))}
-          <a href="#book" onClick={() => setMenuOpen(false)} className="cta cta-olive mt-4">
-            Book a Class
-          </a>
+          <CtaButton href="#book" variant="olive">Book a Class</CtaButton>
         </div>
       )}
+      
     </nav>
   );
 };

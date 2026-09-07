@@ -11,6 +11,8 @@ import GalleryStrip from '@/components/GalleryStrip';
 import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
+import Booking from '@/components/Booking';
+import FAQ from '@/components/FAQ';
 
 export default function Home() {
   return (
@@ -35,6 +37,8 @@ export default function Home() {
         <GalleryStrip />
         <Testimonials />
         <Pricing />
+        <FAQ />
+        <Booking />
 
       </main>
       <Footer />
